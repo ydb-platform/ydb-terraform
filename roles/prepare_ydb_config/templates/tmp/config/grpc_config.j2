@@ -1,0 +1,6 @@
+grpc_config:
+  host: {{ inner_net }}
+  worker_threads: 2
+  workers_per_completion_queue: 1
+  handlers_per_completion_queue: 1000
+  grpc_proxy_count: 2

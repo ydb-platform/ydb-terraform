@@ -1,0 +1,15 @@
+static_erasure: none
+host_configs:
+{% for static_disk in global_static_non_mounted_disks%}
+- drive:
+  - path: {{ static_disk }}
+    type: SSD
+  host_config_id: 1
+{% endfor %}  
+{% for dyn_disk in global_dyn_non_mounted_disks%}  
+- drive:
+  - path: {{ dyn_disk }}
+    type: SSD
+  host_config_id: 2
+{% endfor %}
+ 

@@ -1,0 +1,28 @@
+---
+#============ Creating database and starting database processes =======#
+
+- name: Check if ydb_base_create file exists
+  stat:
+    path: "{{ ydb_dir }}/ydb_base_create"
+  register: ydb_base_create_file
+  when: inventory_hostname in groups['ydb-static-node'][0]
+
+- name: Initialize blobstorage config if ydb_base_create does not exist
+  shell: >
+    {{ ydb_dir }}/release/{{ ydb_version }}/bin/ydbd -s grpc://{{ inner_net }}:{{ hostvars[groups['ydb-static-node'][0]]['grpc_port'] }} admin blobstorage config init --yaml-file {{ cfg_path }}/config.yaml
+  when: inventory_hostname in groups['ydb-static-node'][0] and not ydb_base_create_file.stat.exists  
+  environment:
+    LD_LIBRARY_PATH: "{{ lib_path }}"
+
+- name: Create database if ydb_base_create does not exist
+  shell: >
+    {{ ydb_dir }}/release/{{ ydb_version }}/bin/ydbd -s grpc://{{ inner_net }}:{{ hostvars[groups['ydb-static-node'][0]]['grpc_port'] }} admin database /{{ ydb_domain }}/{{ ydb_dbname }} create ssd:{{ hostvars['hostname']['non_mounted_disks_val'] }}
+  when: inventory_hostname in groups['ydb-static-node'][0] and not ydb_base_create_file.stat.exists
+  environment:
+    LD_LIBRARY_PATH: "{{ lib_path }}"
+
+- name: Create ydb_base_create file
+  file:
+    path: "{{ ydb_dir }}/ydb_base_create"
+    state: touch
+  when: inventory_hostname in groups['ydb-static-node'][0] and not ydb_base_create_file.stat.exists

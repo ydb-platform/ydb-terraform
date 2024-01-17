@@ -1,0 +1,10 @@
+- hosts: all
+  become: true
+  gather_facts: yes
+  roles:
+    #- install_ydb
+    #- prepare_ydb_config
+    #- configuration_static_nodes
+    #- configuration_dyn_nodes
+    #- create_db
+    - ssh_tunnel_setup

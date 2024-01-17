@@ -1,0 +1,14 @@
+blob_storage_config:
+  service_set:
+    groups:
+    - erasure_species: none
+      rings:
+      - fail_domains:
+{% for static_disk in global_static_non_mounted_disks %} 
+{% for host in groups['ydb-static-node'] %}     
+        - vdisk_locations:
+          - node_id: {{ host }}
+            path: {{ static_disk }}
+            pdisk_category: SSD
+{% endfor %}             
+{% endfor %}         

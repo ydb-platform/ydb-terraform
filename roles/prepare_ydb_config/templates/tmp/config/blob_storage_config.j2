@@ -1,0 +1,24 @@
+blob_storage_config:
+  service_set:
+    groups:
+    - erasure_species: none
+      rings:
+      - fail_domains:
+ 
+     
+        - vdisk_locations:
+          - node_id: static-node-1
+            path: /dev/vdb
+            pdisk_category: SSD
+     
+        - vdisk_locations:
+          - node_id: static-node-2
+            path: /dev/vdb
+            pdisk_category: SSD
+     
+        - vdisk_locations:
+          - node_id: static-node-3
+            path: /dev/vdb
+            pdisk_category: SSD
+             
+         
