@@ -22,9 +22,9 @@ ExecStart={{ ydb_dir }}/release/{{ ydb_version }}/bin/ydbd server \
     --ic-port {{ ic_port }}  \
     --mon-port {{ mon_port }}  \
     --tenant /{{ ydb_domain }}/{{ ydb_dbname }} \
-    --node-broker grpc://static-node-1:2100 \
-    --node-broker grpc://static-node-2:2101 \
-    --node-broker grpc://static-node-3:2102
+    --node-broker grpc://static-node-1.ru-central1.internal:2135 \
+    --node-broker grpc://static-node-2.ru-central1.internal:2136 \
+    --node-broker grpc://static-node-3.ru-central1.internal:2137
 
 LimitNOFILE=65536
 LimitCORE=0

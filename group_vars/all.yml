@@ -18,6 +18,7 @@ ydb_dbname: testdb                                     # Database name for the d
 
 #================ Network setup =======================#
 inner_net: 127.0.0.1
+host_extension: .ru-central1.internal
 
 
 #================= Nodes config setup ===============#

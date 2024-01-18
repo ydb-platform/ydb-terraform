@@ -3,8 +3,9 @@
   gather_facts: yes
   roles:
     #- install_ydb
+    #- setup_network
     #- prepare_ydb_config
     #- configuration_static_nodes
     #- configuration_dyn_nodes
-    #- create_db
-    - ssh_tunnel_setup
+    - create_db
+    #- ssh_tunnel_setup

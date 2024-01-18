@@ -17,9 +17,9 @@ static_node_vm_name = "ydb-static-node"             // Virtual machine name
 static_node_cores = 2                               //vCPU (2, 4, 6, 8, 10, 12, 14, 16, 20, 24, 28, 32)                        
 static_node_memory = 4                              // Memory, GB (4GB, 8GB, 12GB, 16GB, 20GB, 24GB, 28GB, 32GB.)
 static_node_hostname = "static-node"
-static_node_start_ic_port = 19000
-static_node_start_grpc_port = 2100
-static_node_start_mon_port = 2300
+static_node_start_ic_port = 19001
+static_node_start_grpc_port = 2135
+static_node_start_mon_port = 8765
 static_node_disk_per_vm = 1
 static_node_attache_disk_name = "ydb-stat-stor-disk"
 static_node_storage_size = 80
@@ -31,10 +31,10 @@ dyn_node_vm_name = "ydb-dyn-node"                   // Virtual machine name
 dyn_node_cores = 2                                  //vCPU (2, 4, 6, 8, 10, 12, 14, 16, 20, 24, 28, 32)                        
 dyn_node_memory = 4                                 // Memory, GB (4GB, 8GB, 12GB, 16GB, 20GB, 24GB, 28GB, 32GB.)
 dyn_node_storage_size = 80                          // The min disk size (GB)
-dyn_node_start_ic_port = 20000
+dyn_node_start_ic_port = 19101
 dyn_node_hostname = "dynamic-node"
-dyn_node_start_grpc_port = 2200
-dyn_node_start_mon_port = 2400
+dyn_node_start_grpc_port = 2235
+dyn_node_start_mon_port = 8865
 
 
 #======= NET disk zone =============#
