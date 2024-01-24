@@ -1,6 +1,6 @@
 hosts:
 {% for host in groups['all'] %}
-- host: {{ host }}{{ host_extension }}
+- host: {{ hostvars[host]['ansible_host'] }}
   port: {{ hostvars[host]['ic_port'] }}
 {%if host in groups['ydb-static-node'] %}
   host_config_id: 1

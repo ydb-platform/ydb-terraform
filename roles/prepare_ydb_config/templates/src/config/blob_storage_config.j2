@@ -7,7 +7,7 @@ blob_storage_config:
 {% for static_disk in global_static_non_mounted_disks %} 
 {% for host in groups['ydb-static-node'] %}     
         - vdisk_locations:
-          - node_id: {{ host }}{{ host_extension }}
+          - node_id: {{ hostvars[host]['ansible_host'] }}
             path: {{ static_disk }}
             pdisk_category: SSD
 {% endfor %}             

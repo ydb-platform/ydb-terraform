@@ -1,0 +1,38 @@
+- hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+    - name: Install Python 3 and pip
+      apt:
+        name:
+          - python3
+          - python3-pip
+        state: latest
+        update_cache: yes
+
+    - name: Install Ansible via pip
+      pip:
+        name: ansible
+        state: latest
+
+    - name: Sparse checkout of specific subdirectory in a repo
+      ansible.builtin.command:
+        cmd: |
+          git init /home/ubuntu/ydb-ansible
+          cd /home/ubuntu/ydb-ansible
+          git remote add origin https://github.com/ydb-platform/ydb-ansible.git
+          git config core.sparseCheckout true
+          echo "examples/9-nodes-mirror-3-dc/*" >> .git/info/sparse-checkout
+          git pull origin refactor-use-collections
+      args:
+        executable: /bin/bash
+      become: no
+    
+    - name: Install ydb-ansible collection from Git
+      ansible.builtin.command:
+        cmd: ansible-galaxy collection install 'git+https://github.com/ydb-platform/ydb-ansible.git,refactor-use-collections'
+      become: no
+
+      
+

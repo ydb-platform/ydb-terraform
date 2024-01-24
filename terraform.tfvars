@@ -9,10 +9,11 @@ vps_platform = "standard-v1"                        // standard-v1 – Intel Bro
 os_image_id = "fd8clogg1kull9084s9o"                // Ubuntu 20.04 image
 boot_disk_type = "network-ssd"                    // Storage type
 subnet_id = "e9bnabnpm471crn43kjr"                  // Subnet ID
+private_network = "enpbgnk6g4u0p79s21vu"
 boot_disk_size = 80
 
 #======= Static nodes setup zone ============#
-static_node_vm_value = 3
+static_node_vm_value = 10
 static_node_vm_name = "ydb-static-node"             // Virtual machine name
 static_node_cores = 2                               //vCPU (2, 4, 6, 8, 10, 12, 14, 16, 20, 24, 28, 32)                        
 static_node_memory = 4                              // Memory, GB (4GB, 8GB, 12GB, 16GB, 20GB, 24GB, 28GB, 32GB.)
@@ -25,23 +26,9 @@ static_node_attache_disk_name = "ydb-stat-stor-disk"
 static_node_storage_size = 80
 static_node_attache_disk_type = "network-ssd"
 
-#======= Dyn nodes setup zone ============#
-dyn_node_vm_value = 3
-dyn_node_vm_name = "ydb-dyn-node"                   // Virtual machine name
-dyn_node_cores = 2                                  //vCPU (2, 4, 6, 8, 10, 12, 14, 16, 20, 24, 28, 32)                        
-dyn_node_memory = 4                                 // Memory, GB (4GB, 8GB, 12GB, 16GB, 20GB, 24GB, 28GB, 32GB.)
-dyn_node_storage_size = 80                          // The min disk size (GB)
-dyn_node_start_ic_port = 19101
-dyn_node_hostname = "dynamic-node"
-dyn_node_start_grpc_port = 2235
-dyn_node_start_mon_port = 8865
-
-
-#======= NET disk zone =============#
-dyn_node_disk_per_vm = 1                                     // NET-disk per VM
-dyn_node_attache_disk_name = "ydb-dyn-stor-disk"                      // Disk name
-dyn_node_attache_disk_size = 80                              // NB size must be divisible by 93 (GB)
-dyn_node_attache_disk_type = "network-ssd"                   // Type of the NET disk
+#======== DNS setup zone =============#
+dns_name = "ydb-claster" 
+domain = "ydb-claster.com."
 
 #====== SSH credentials zone =======#
 user = "ubuntu"                                     // Username to connect via SSH
