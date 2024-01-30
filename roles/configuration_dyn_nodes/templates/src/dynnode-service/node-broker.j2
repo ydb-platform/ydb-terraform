@@ -1,3 +1,0 @@
-{% for host in groups['ydb-static-node'] %}
-    --node-broker grpc://{{ host }}{{ host_extension }}:{{ hostvars[host].grpc_port }}{{ ' \\' if not loop.last else '' }}
-{% endfor %}
