@@ -19,7 +19,7 @@ provider "yandex" {
 
 
 #============== Create DNS private zone ================
-resource "yandex_dns_zone" "ydb-claster-dns-private" {
+resource "yandex_dns_zone" "ydb-cluster-dns-private" {
   name             = var.dns_name
   zone             = var.domain
   public           = false
@@ -82,15 +82,15 @@ resource "yandex_compute_instance" "ydb-static-nodes" {
 resource "yandex_dns_recordset" "ydb-static-nodes-fqdn" {
   count = length(yandex_compute_instance.ydb-static-nodes.*.id)
 
-  zone_id = yandex_dns_zone.ydb-claster-dns-private.id
+  zone_id = yandex_dns_zone.ydb-cluster-dns-private.id
   name    = "static-node-${count.index + 1}"
   type    = "A"
   ttl     = 300
   data    = [yandex_compute_instance.ydb-static-nodes[count.index].network_interface[0].ip_address]
 }
 
-resource "yandex_dns_recordset" "ydb-claster-a-record" {
-  zone_id = yandex_dns_zone.ydb-claster-dns-private.id
+resource "yandex_dns_recordset" "ydb-cluster-a-record" {
+  zone_id = yandex_dns_zone.ydb-cluster-dns-private.id
   name    = var.domain
   type    = "A"
   ttl     = 300
