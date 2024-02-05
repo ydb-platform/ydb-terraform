@@ -67,8 +67,7 @@ resource "yandex_compute_instance" "ydb-static-nodes" {
 
   network_interface {
     subnet_id = var.subnet_id
-    nat       = count.index == var.static_node_vm_value - 1 ? true : false
-  
+    nat       = true
   }
 
   metadata = {
