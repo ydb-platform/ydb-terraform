@@ -27,8 +27,8 @@ static_node_storage_size = 80
 static_node_attache_disk_type = "network-ssd"
 
 #======== DNS setup zone =============#
-dns_name = "ydb-claster" 
-domain = "ydb-claster.com."
+dns_name = "ydb-cluster" 
+domain = "ydb-cluster.com."
 
 #====== SSH credentials zone =======#
 user = "ubuntu"                                     // Username to connect via SSH
