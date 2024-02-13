@@ -31,7 +31,6 @@ variable "installation_vm_boot_disk_type" {type = string}
 #============ DNS setup zone ===============#
 variable "dns_name"                       {type = string}
 variable "domain"                         {type = string}
-variable "default_net_id"                 {type = string}
 
 #====== SSH conn. vars initializing ================
 variable "user"                           {type = string}
