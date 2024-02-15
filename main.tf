@@ -78,7 +78,6 @@ resource "yandex_compute_instance" "ydb-ansible-install-vm" {
 
   metadata = {
     ssh-keys = "ubuntu:${file(var.ssh_key_pub_path)}"
-    user-data = file("${path.module}/ydb-ansible-vm-prepare.sh")
   }
 
 }
