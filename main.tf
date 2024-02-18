@@ -44,7 +44,6 @@ module "vpc" {
   auth_folder_id = var.folder_id
   auth_zone_name = var.zone_name
 
-
 }
 
 module "ydb_vms" {
