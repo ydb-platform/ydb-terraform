@@ -79,7 +79,7 @@ variable "input_module_static_node_disk_per_vm" {
   description = ""
 }
 
-variable "module_static_node_attache_disk_name" {
+variable "module_static_node_attached_disk_name" {
   type = string
   description = ""
 }
