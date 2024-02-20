@@ -52,7 +52,7 @@ variable "key_path" {
 
 variable "cloud_id" {
     type = string
-    default = "b1g7gqj2vnq67gjseuva" 
+    default = "<needs_to_be_replaced>" 
     description = "Yandex Cloud ID"
 }
 
