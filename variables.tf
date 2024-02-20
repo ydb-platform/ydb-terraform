@@ -64,7 +64,7 @@ variable "profile" {
 
 variable "folder_id" {
     type = string
-    default = "b1gs3jaj6lvb189376n4"
+    default = "<needs_to_be_replaced>"
     description = "Yandex folder ID"
 }
 
