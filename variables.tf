@@ -72,5 +72,5 @@ variable "folder_id" {
 variable "zone_name" {
     type = list(string)
     default = ["ru-central1-a", "ru-central1-b", "ru-central1-d"]
-    description = "Yandex zones name"
+    description = "Names of availability zones to use"
 }
