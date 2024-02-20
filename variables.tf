@@ -5,7 +5,7 @@ variable "vps_platform" {
     description = "standard-v1 – Intel Broadwell, -v2 – Intel Cascade Lake, -v3 – Intel Ice Lake"
 }
 
-variable "static_node_attache_disk_name" {
+variable "static_node_attached_disk_name" {
     type = string
     default = "ydb-data-disk"
     description = "Name of the disk attached to the VM"
