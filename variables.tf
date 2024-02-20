@@ -2,7 +2,7 @@
 variable "vps_platform" {
     type = string
     default = "standard-v3"
-    description = "standard-v1 – Intel Broadwell, -v2 – Intel Cascade Lake, -v3 – Intel Ice Lake."
+    description = "standard-v1 – Intel Broadwell, -v2 – Intel Cascade Lake, -v3 – Intel Ice Lake"
 }
 
 variable "static_node_attache_disk_name" {
