@@ -25,7 +25,7 @@ resource "yandex_compute_instance" "ydb-static-nodes" {
     for_each = slice(var.input_static_disks_ids, count.index * var.input_module_static_node_disk_per_vm, (count.index + 1) * var.input_module_static_node_disk_per_vm)
     content {
       disk_id = secondary_disk.value
-      device_name = "${var.module_static_node_attache_disk_name}-${secondary_disk.key + 1}"
+      device_name = "${var.module_static_node_attached_disk_name}-${secondary_disk.key + 1}"
     }
   }
 
