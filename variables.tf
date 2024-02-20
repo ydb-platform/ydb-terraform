@@ -26,7 +26,7 @@ variable "ssh_key_pub_path" {
 variable "domain" {
     type = string
     default = "ydb-cluster.com."
-    description = "Inner domain"
+    description = "Internal domain"
 }
 
 #=====Number vars========#
