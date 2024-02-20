@@ -7,7 +7,7 @@ variable "vps_platform" {
 
 variable "static_node_attache_disk_name" {
     type = string
-    default = "ydb-stat-stor-disk"
+    default = "ydb-data-disk"
     description = "Name of the disk attached to the VM"
 }
 
