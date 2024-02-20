@@ -53,7 +53,7 @@ variable "key_path" {
 variable "cloud_id" {
     type = string
     default = "b1g7gqj2vnq67gjseuva" 
-    description = "Yandex WEB GUI Cloud"
+    description = "Yandex Cloud ID"
 }
 
 variable "profile" {
