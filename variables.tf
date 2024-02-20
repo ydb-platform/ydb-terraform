@@ -20,7 +20,7 @@ variable "user" {
 variable "ssh_key_pub_path" {
     type = string
     default = "~/yandex.pub"
-    description = "Path to public part of SSH-key"
+    description = "Path to the public part of SSH-key"
 }
 
 variable "domain" {
