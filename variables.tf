@@ -47,7 +47,7 @@ variable "static_node_disk_per_vm" {
 variable "key_path" {
     type = string
     default = "prod.json"
-    description = "Set the JSON SA key file"
+    description = "Path to the json file with service account credentials"
 }
 
 variable "cloud_id" {
