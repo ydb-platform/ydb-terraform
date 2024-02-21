@@ -7,8 +7,7 @@ variable "aws_region" {
 }
 
 variable "aws_profile" {
-  description = "AWS profile to be using."
-  # Used if you have a few profiles in ~/.aws/credentials.
+  description = "AWS profile to use if you have multiple defined in ~/.aws/credentials."
   type = string
   default = "AWS"
 }
