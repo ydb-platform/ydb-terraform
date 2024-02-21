@@ -45,7 +45,7 @@ variable "vm_prefix" {
   description = "The prefix for the hostname, DNS VM name, and VM name in the EC2 Web UI."
   # This prefix is prepended to the names to form the full identifiers.
   type        = string
-  default     = "node-"
+  default     = "static-node-"
 }
 
 variable "domain" {
