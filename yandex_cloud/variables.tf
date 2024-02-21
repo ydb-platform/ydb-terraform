@@ -3,7 +3,7 @@
 variable "key_path" {
     description = "Path to the json file with service account credentials"
     type = string
-    default = "prod.json"
+    default = "../prod.json"
     
 }
 
