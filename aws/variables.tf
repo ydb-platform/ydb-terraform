@@ -16,10 +16,9 @@ variable "aws_profile" {
 
 variable "availability_zones" {
   description = "List of availability zones in the region." 
-  # We are using 3 zones of us-west-2 region for create 9 VMs. 
-  # Per 3 VM on each zone.
-  # To get full list availability zones in region use command:
-  # aws ec2 describe-availability-zones --region <region name> (--profile AWS optional key, if you have a few credentials)
+  # We are using 3 availability zones to create 3 VMs per zone, 9 VMs total.
+  # To get the full list availability zones in a region use:
+  # aws ec2 describe-availability-zones --region <region name> 
   
   type        = list(string)
   default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
