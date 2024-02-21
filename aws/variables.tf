@@ -1,7 +1,7 @@
 #=============== Auth vars control zone ===========#
 
 variable "aws_region" {
-  description = ""
+  description = "AWS region to use"
   type = string
   default = "us-west-2"
 }
