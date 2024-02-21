@@ -14,7 +14,7 @@ variable "static_node_attache_disk_type" {
 
 #========= Transport vars ==========#
 
-variable "module_static_node_attache_disk_name" {
+variable "module_static_node_attached_disk_name" {
   type        = string
   description = "ydb-disk"
 }
