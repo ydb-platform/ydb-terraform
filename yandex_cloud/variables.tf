@@ -1,3 +1,40 @@
+#========== Auth vars =================#
+
+variable "key_path" {
+    description = "Path to the json file with service account credentials"
+    type = string
+    default = "prod.json"
+    
+}
+
+variable "cloud_id" {
+    description = "Yandex Cloud ID"
+    type = string
+    default = "b1g7gqj2vnq67gjseuva" 
+    
+}
+
+variable "profile" {
+    description = "Profile section from"
+    type = string
+    default = "Yandex"
+    
+}
+
+variable "folder_id" {
+    description = "Yandex folder ID"
+    type = string
+    default = "b1gs3jaj6lvb189376n4"
+}
+
+variable "zone_name" {
+    description = "Names of availability zones to use"
+    type = list(string)
+    default = ["ru-central1-a", "ru-central1-b", "ru-central1-d"]
+    
+}
+
+
 #====== String vars ========#
 variable "vps_platform" {
     type = string
@@ -42,35 +79,3 @@ variable "static_node_disk_per_vm" {
     description = "Number of disks attached to the VM"
 }
 
-#========== Auth vars =======#
-
-variable "key_path" {
-    type = string
-    default = "prod.json"
-    description = "Path to the json file with service account credentials"
-}
-
-variable "cloud_id" {
-    type = string
-    default = "<needs_to_be_replaced>" 
-    description = "Yandex Cloud ID"
-}
-
-variable "profile" {
-    type = string
-    default = "Yandex"
-    description = "Profile section from"
-}
-
-variable "folder_id" {
-    type = string
-    default = "<needs_to_be_replaced>"
-    description = "Yandex folder ID"
-}
-
-#======List vars==========#
-variable "zone_name" {
-    type = list(string)
-    default = ["ru-central1-a", "ru-central1-b", "ru-central1-d"]
-    description = "Names of availability zones to use"
-}

@@ -15,17 +15,20 @@ terraform {
   required_version = ">= 0.13"
 }
 
+# =========== Storage =============#
+# Create disks for VMs.
+
 
 module "storage" {
   source = "./modules/storage/"
 
-  #==== Global data input ======#
+  # Global data input
   module_zone_name = var.zone_name
   module_static_node_disk_per_vm = var.static_node_disk_per_vm
-  module_static_node_attache_disk_name = var.static_node_attache_disk_name
+  module_static_node_attached_disk_name = var.static_node_attached_disk_name
   module_static_node_vm_value = var.static_node_vm_value
 
-  #===== Auth data input =======#
+  # Auth data input
   auth_key_path = var.key_path
   auth_cloud_id = var.cloud_id
   auth_profile = var.profile
@@ -33,11 +36,14 @@ module "storage" {
   auth_zone_name = var.zone_name
 
 }
+
+#============ VPC ============#
+# Create Virtual Cloud NET and subnets. 
 
 module "vpc" {
   source = "./modules/vpc/"
 
-  #===== Auth data input =======#
+  # Auth data input
   auth_key_path = var.key_path
   auth_cloud_id = var.cloud_id
   auth_profile = var.profile
@@ -46,23 +52,26 @@ module "vpc" {
 
 }
 
+#=========== VMs =============#
+# Create VMs. 
+
 module "ydb_vms" {
   source         = "./modules/vm/ydb_vms/"
 
-  #==== Another module data input===# 
+  # Modules data input
   input_static_disks_ids = module.storage.ydb_static_disks_ids
   input_subnet_ids  = module.vpc.subnet_ids
   input_module_static_node_disk_per_vm = var.static_node_disk_per_vm
 
-  #==== Global data input ======#
-  module_static_node_attache_disk_name = var.static_node_attache_disk_name
+  # Global data input
+  module_static_node_attached_disk_name = var.static_node_attached_disk_name
   module_ssh_key_pub_path = var.ssh_key_pub_path
   module_user = var.user
   module_static_node_vm_value = var.static_node_vm_value
   module_vps_platform = var.vps_platform
   module_domain = var.domain
 
-  #===== Auth data input =======#
+  # Auth data input
   auth_key_path = var.key_path
   auth_cloud_id = var.cloud_id
   auth_profile = var.profile
