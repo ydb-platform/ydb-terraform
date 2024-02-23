@@ -14,7 +14,7 @@ resource "azurerm_subnet" "internal" {
 }
 
 resource "azurerm_public_ip" "pip" {
-  count               = var.input_subnets_count
+  count               = 1
   name                = "pub-ip-${count.index + 1}"
   resource_group_name = var.module_group_name
   location            = var.auth_location
@@ -22,16 +22,16 @@ resource "azurerm_public_ip" "pip" {
 }
 
 resource "azurerm_network_interface" "main" {
-  count               = var.input_network_interface_count
+  count               = var.input_vm_count
   name                = "ydb-nic${count.index + 1}"
   resource_group_name = var.module_group_name
   location            = var.auth_location
 
   ip_configuration {
     name                          = "ipconfig${count.index + 1}"
-    subnet_id                     = azurerm_subnet.internal[count.index].id
+    subnet_id                     = azurerm_subnet.internal[count.index % var.input_subnets_count].id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.pip[count.index].id
+    public_ip_address_id          = count.index == 0 ? azurerm_public_ip.pip[0].id : null
   }
 }
 

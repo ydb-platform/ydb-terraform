@@ -27,3 +27,8 @@ variable "module_network_security_group_id" {
     type = string
     description = ""
 }
+
+variable "input_vm_count" {
+    type = number
+    description = ""
+}

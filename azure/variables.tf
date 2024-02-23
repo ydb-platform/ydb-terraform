@@ -23,7 +23,7 @@ variable "vm_name" {
 variable "vm_count" {
     description = ""
     type = number
-    default = 3
+    default = 4
 }
 
 variable "vm_user" {
@@ -56,4 +56,12 @@ variable "subnets_count" {
     type = number
     description = ""
     default = 3
+}
+
+#========= DNS conf vars =========#
+
+variable "domain" {
+    type = string
+    description = ""
+    default = "ydb-cluster.com"
 }

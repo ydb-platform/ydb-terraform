@@ -39,3 +39,8 @@ variable "module_network_interface_ids" {
   type        = list(string)
   description = "List of network interface IDs to attach to the VMs"
 }
+
+variable "input_nat_private_ip_first_vm" {
+    type = string
+    description = ""
+}
