@@ -1,11 +1,12 @@
 resource "azurerm_linux_virtual_machine" "main" {
-  name                = var.input_vm_name
+  count = var.input_vm_count
+  name                = format("%s-%d", var.input_vm_name, count.index + 1)
   resource_group_name = var.module_group_name
   location            = var.auth_location
   size                = var.input_vm_size
   admin_username      = var.input_user
   
-  network_interface_ids = var.module_azurerm_network_interface
+  network_interface_ids = [element(var.module_network_interface_ids, count.index)]
   
 
   admin_ssh_key {

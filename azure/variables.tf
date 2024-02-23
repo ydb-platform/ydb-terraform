@@ -20,6 +20,12 @@ variable "vm_name" {
     default = "ydb-node" 
 }
 
+variable "vm_count" {
+    description = ""
+    type = number
+    default = 3
+}
+
 variable "vm_user" {
     description = ""
     type = string
@@ -42,4 +48,12 @@ variable "network_name" {
     description = ""
     type = string
     default = "ydb-network"
+}
+
+#====== NETS conf vars =========#
+
+variable "subnets_count" {
+    type = number
+    description = ""
+    default = 3
 }

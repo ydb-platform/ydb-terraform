@@ -26,19 +26,32 @@ module "vpc" {
     source = "./modules/vpc"
 
     module_group_name = module.resource_group.group_name
+    input_subnets_count = var.subnets_count
+    input_network_interface_count = var.vm_count
 
     auth_location = var.auth_location
     input_network_name = var.network_name
+
+    module_network_security_group_id = module.security.network_security_group_id
+}
+
+module "security" {
+  source = "./modules/security"
+
+  auth_location = var.auth_location
+  module_group_name = module.resource_group.group_name
+
 }
 
 module "vm" {
     source = "./modules/vm"
 
     input_vm_name = var.vm_name
+    input_vm_count = var.vm_count
     module_group_name = module.resource_group.group_name
     auth_location = var.auth_location
     input_vm_size = var.vm_size
     input_user = var.vm_user
     input_ssh_keys = var.ssh_key_path
-    module_azurerm_network_interface = [module.vpc.network_interface_main, module.vpc.network_interface_int]
+    module_network_interface_ids = module.vpc.network_interface_main_ids
 }

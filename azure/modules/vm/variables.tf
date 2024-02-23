@@ -3,6 +3,12 @@ variable "input_vm_name" {
     type = string
 }
 
+variable "input_vm_count" {
+    description = ""
+    type = number
+}
+
+
 variable "auth_location" {
     type = string
     description = ""
@@ -29,7 +35,7 @@ variable "input_vm_size" {
     description = ""
 }
 
-variable "module_azurerm_network_interface" {
-    type = list(string)
-    description = ""
+variable "module_network_interface_ids" {
+  type        = list(string)
+  description = "List of network interface IDs to attach to the VMs"
 }

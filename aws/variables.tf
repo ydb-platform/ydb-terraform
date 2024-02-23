@@ -27,6 +27,12 @@ variable "availability_zones" {
 variable "vm_count" {
   description = "The number of VMs to be created."
   type        = number
+  default     = 4
+}
+
+variable "subnets_count" {
+  description = "The number of VMs to be created."
+  type        = number
   default     = 3
 }
 
