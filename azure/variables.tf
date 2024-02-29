@@ -1,67 +1,68 @@
 #========= Auth ===============#
 
 variable "auth_location" {
-    description = ""
-    type = string
-    default = "East US"   
+  description = "The region where the infrastructure will be created."
+  type        = string
+  default     = "East US"
 }
 
 variable "auth_resource_group_name" {
-    description = ""
-    type = string
-    default = "ydb-test-group"   
+  description = "The name of the group where the infrastructure will be created."
+  type        = string
+  default     = "ydb-test-group"
 }
 
 #======== VM conf vars ============#
 
 variable "vm_name" {
-    description = ""
-    type = string
-    default = "ydb-node" 
+  description = "The name of the virtual machine."
+  type        = string
+  default     = "ydb-node"
 }
 
 variable "vm_count" {
-    description = ""
-    type = number
-    default = 4
+  description = "The number of virtual machines to create."
+  type        = number
+  default     = 4
 }
 
 variable "vm_user" {
-    description = ""
-    type = string
-    default = "ubuntu"
+  description = "The default SSH user name."
+  type        = string
+  default     = "ubuntu"
 }
 
 variable "vm_size" {
-    description = ""
-    type = string
-    default = "Standard_B1ls"
+  description = "The size specification of the virtual machine based on the required resources."
+  type        = string
+  default     = "Standard_B1ls"
 }
 
 variable "ssh_key_path" {
-    description = ""
-    type = string
-    default = "~/yandex.pub"
+  description = "The file path to the public SSH key for VM access."
+  type        = string
+  default     = "~/yandex.pub"
 }
 
 variable "network_name" {
-    description = ""
-    type = string
-    default = "ydb-network"
+  description = "The name of the virtual network."
+  type        = string
+  default     = "ydb-network"
 }
 
 #====== NETS conf vars =========#
 
 variable "subnets_count" {
-    type = number
-    description = ""
-    default = 3
+  description = "The number of subnets to create within the network."
+  type        = number
+  default     = 3
 }
 
 #========= DNS conf vars =========#
 
 variable "domain" {
-    type = string
-    description = ""
-    default = "ydb-cluster.com"
+  description = "The domain name associated with the DNS configurations."
+  type        = string
+  default     = "ydb-cluster.com"
+
 }

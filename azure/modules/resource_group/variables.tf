@@ -1,9 +1,9 @@
 variable "auth_location" {
-    type = string
-    description = ""
+  description = "The Azure region where authentication will occur."
+  type        = string
 }
 
 variable "auth_resource_group_name" {
-    type = string
-    description = ""
+  description = "The name of the Azure resource group."
+  type        = string
 }
