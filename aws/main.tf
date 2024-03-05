@@ -21,7 +21,7 @@ module "vpc" {
   source = "./modules/vpc"
 
   # Global input data 
-  subnets_count = var.vm_count
+  subnets_count = var.subnets_count
   subnets_availability_zones = var.availability_zones
 
   # Auth data 
@@ -47,7 +47,7 @@ module "key_pair" {
 
 module "security" {
   source = "./modules/security/"
-
+  
   # Global input data
   allow_ports = var.allow_ports_list
 
