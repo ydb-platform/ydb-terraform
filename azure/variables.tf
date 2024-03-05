@@ -1,4 +1,4 @@
-#========= Auth ===============#
+#=============== Auth vars control zone ===========#
 
 variable "auth_location" {
   description = "The region where the infrastructure will be created."
@@ -12,18 +12,18 @@ variable "auth_resource_group_name" {
   default     = "ydb-test-group"
 }
 
-#======== VM conf vars ============#
-
-variable "vm_name" {
-  description = "The name of the virtual machine."
-  type        = string
-  default     = "ydb-node"
-}
+#=============== VM control vars zone ==============#
 
 variable "vm_count" {
   description = "The number of virtual machines to create."
   type        = number
   default     = 4
+}
+
+variable "vm_name" {
+  description = "The name of the virtual machine."
+  type        = string
+  default     = "ydb-node"
 }
 
 variable "vm_user" {
@@ -50,7 +50,7 @@ variable "network_name" {
   default     = "ydb-network"
 }
 
-#====== NETS conf vars =========#
+#============== NETS control vars zone ===============#
 
 variable "subnets_count" {
   description = "The number of subnets to create within the network."
@@ -58,7 +58,7 @@ variable "subnets_count" {
   default     = 3
 }
 
-#========= DNS conf vars =========#
+#=============== DNS control vars zone ================#
 
 variable "domain" {
   description = "The domain name associated with the DNS configurations."

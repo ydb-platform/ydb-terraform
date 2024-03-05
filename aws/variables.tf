@@ -14,6 +14,12 @@ variable "aws_profile" {
 
 #=============== VM control vars zone ==============#
 
+variable "vm_count" {
+  description = "The number of VMs to be created."
+  type        = number
+  default     = 4
+}
+
 variable "availability_zones" {
   description = "List of availability zones in the region." 
   # We are using 3 availability zones to create 3 VMs per zone, 9 VMs total.
@@ -24,11 +30,8 @@ variable "availability_zones" {
   default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
 
-variable "vm_count" {
-  description = "The number of VMs to be created."
-  type        = number
-  default     = 4
-}
+
+#============== NETS control vars zone ===============#
 
 variable "subnets_count" {
   description = "The number of VMs to be created."
@@ -45,7 +48,7 @@ variable "allow_ports_list" {
   default     = [21, 22]
 }
 
-# =============== DNS control vars zone ================#
+#=============== DNS control vars zone ================#
 
 variable "vm_prefix" {
   description = "The prefix for the hostname, DNS VM name, and VM name in the EC2 Web UI."

@@ -1,16 +1,16 @@
-#========== Auth vars =================#
+#=============== Auth vars control zone ===========#
 
 variable "key_path" {
     description = "Path to the json file with service account credentials"
     type = string
-    default = "../prod.json"
+    #default = "./prod.json"
     
 }
 
 variable "cloud_id" {
     description = "Yandex Cloud ID"
     type = string
-    default = "b1g7gqj2vnq67gjseuva" 
+    #default = "<yandex cloud ID >" 
     
 }
 
@@ -24,18 +24,24 @@ variable "profile" {
 variable "folder_id" {
     description = "Yandex folder ID"
     type = string
-    default = "b1gs3jaj6lvb189376n4"
-}
-
-variable "zone_name" {
-    description = "Names of availability zones to use"
-    type = list(string)
-    default = ["ru-central1-a", "ru-central1-b", "ru-central1-d"]
-    
+    #default = "<yandex cloud folder ID>"
 }
 
 
-#====== String vars ========#
+#=============== VM control vars zone ==============#
+
+variable "vm_count" {
+    type = number
+    default = 9
+    description = "Number of VMs being created"
+}
+
+variable "static_node_disk_per_vm" {
+    type = number
+    default = 1
+    description = "Number of disks attached to the VM"
+}
+
 variable "vps_platform" {
     type = string
     default = "standard-v3"
@@ -56,9 +62,19 @@ variable "user" {
 
 variable "ssh_key_pub_path" {
     type = string
-    default = "~/yandex.pub"
+    #default = "<path to SSH pub>"
     description = "Path to the public part of SSH-key"
 }
+
+variable "zone_name" {
+    description = "Names of availability zones to use"
+    type = list(string)
+    default = ["ru-central1-a", "ru-central1-b", "ru-central1-d"]
+    
+}
+
+
+#=============== DNS control vars zone ================#
 
 variable "domain" {
     type = string
@@ -66,16 +82,6 @@ variable "domain" {
     description = "Internal domain"
 }
 
-#=====Number vars========#
-variable "static_node_vm_value" {
-    type = number
-    default = 9
-    description = "Number of VMs being created"
-}
 
-variable "static_node_disk_per_vm" {
-    type = number
-    default = 1
-    description = "Number of disks attached to the VM"
-}
+
 

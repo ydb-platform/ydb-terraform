@@ -26,7 +26,7 @@ module "storage" {
   module_zone_name = var.zone_name
   module_static_node_disk_per_vm = var.static_node_disk_per_vm
   module_static_node_attached_disk_name = var.static_node_attached_disk_name
-  module_static_node_vm_value = var.static_node_vm_value
+  module_static_node_vm_value = var.vm_count
 
   # Auth data input
   auth_key_path = var.key_path
@@ -67,7 +67,7 @@ module "ydb_vms" {
   module_static_node_attached_disk_name = var.static_node_attached_disk_name
   module_ssh_key_pub_path = var.ssh_key_pub_path
   module_user = var.user
-  module_static_node_vm_value = var.static_node_vm_value
+  module_static_node_vm_value = var.vm_count
   module_vps_platform = var.vps_platform
   module_domain = var.domain
 
