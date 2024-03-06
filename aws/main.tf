@@ -23,10 +23,6 @@ module "vpc" {
   # Global input data 
   subnets_count = var.subnets_count
   subnets_availability_zones = var.availability_zones
-
-  # Auth data 
-  auth_aws_region = var.aws_region
-  auth_aws_profile = var.aws_profile
 }
 
 
@@ -35,10 +31,6 @@ module "vpc" {
 
 module "key_pair" {
   source = "./modules/key_pair/"
-
-  # Auth data
-  auth_aws_region = var.aws_region
-  auth_aws_profile = var.aws_profile
 }
 
 
@@ -53,10 +45,6 @@ module "security" {
 
   # Modules input data
   ydb-intro-net-id = module.vpc.vpc_id
-  
-  # Auth data
-  auth_aws_region = var.aws_region
-  auth_aws_profile = var.aws_profile
 }
 
 #=========== Instance ===========#
@@ -74,10 +62,6 @@ module "instance" {
   input_security_group_id = module.security.sec_out
   req_key_pair = module.key_pair.key_name
   input_subnet_ids = module.vpc.subnet_ids
-
-  # Auth data
-  auth_aws_region = var.aws_region
-  auth_aws_profile = var.aws_profile
 }
 
 #============== IEP ===================#
@@ -93,10 +77,6 @@ module "eip" {
   # Modules input data 
   input_subnets_ids = module.vpc.subnet_ids
   input_vpc_id = module.vpc.vpc_id
-  
-  # Auth data
-  auth_aws_region = var.aws_region
-  auth_aws_profile = var.aws_profile
 }
 
 #=============== DNS ==================#
@@ -112,8 +92,4 @@ module "dns" {
   # Modules input data
   input_intro_net_id = module.vpc.vpc_id
   input_ydb_vms_subnet_ips = module.instance.instance_private_ips
-
-  # Auth data
-  auth_aws_region = var.aws_region
-  auth_aws_profile = var.aws_profile
 }

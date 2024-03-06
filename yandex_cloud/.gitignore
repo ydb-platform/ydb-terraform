@@ -4,4 +4,4 @@ prod.json
 terraform.tfstate
 terraform.tfstate.backup
 terraform.tfstate.**.backup
-swaper.sh
+.envrc
