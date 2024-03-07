@@ -3,21 +3,23 @@
 variable "project" {
   description = "The name of the GCP project."
   type        = string
-  default     = "ydb-terraform"
+  #default    = "<project name>"
 }
 
 variable "region" {
   description = "The GCP region where the infrastructure will be created."
-  type        = string
-  default     = "us-east1"
+  #Use the command `./gcloud compute regions list` to list available regions.
+  type         = string
+  #default     = "<region>"
 }
 
 variable "zones" {
-  description = "Allow GCP zones by region."
-  # Use command `./gcloud compute zones list | grep <region name>` to take a allow zones.
+  description = "List of GCP zones within the specified region that are allowed for deployment."
+  #Use the command `./gcloud compute zones list | grep <region-name>` to list available zones in a region. Replace <region-name> with the actual name of your region, such as 'us-east1'."
   type        = list(string)
-  default     = ["us-east1-b", "us-east1-c", "us-east1-d" ]
+  #default    = [<zone name>, ... ]
 }
+
 
 #============== NETS control vars zone ===============#
 
@@ -63,7 +65,7 @@ variable "vm_size" {
 
 variable "bootdisk_image" {
     description = "Bootdisk image"
-    # Use command `./gcloud compute images list --filter="family:ubuntu-minimal-2204-lts"` to take list of Ubuntu images.
+    # Use command `./gcloud compute images list --filter="family:ubuntu"` to take list of Ubuntu images.
     type = string
     default = "ubuntu-minimal-2204-jammy-v20240229"
 }
@@ -78,7 +80,7 @@ variable "user" {
 variable "ssh_key_pub_path" {
     description = "Path to public SSH key."
     type = string
-    default = "~/yandex.pub"
+    #default = "<path to SSH pub key>"
 }
 
 
