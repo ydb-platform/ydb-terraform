@@ -30,7 +30,7 @@ Global project variables containing authentication data, virtual server configur
 |---------------|-------------|------|---------------|------|
 | `project` | The project name that was set in the Google Cloud console. | string | <project name> | |
 | `region` | The region where the infrastructure will be deployed. | string | <region> | A list of regions can be obtained by the command `./gcloud compute regions list`.|
-| `zones` | The list of availability zones where the subnets and VMs will be created. | list(string) | [<zone name>, ... ] | A list of availability zones can be obtained by the command `./gcloud compute zones list | grep <region-name>`.|
+| `zones` | The list of availability zones where the subnets and VMs will be created. | list(string) | [\<zone name>, ... ] | A list of availability zones can be obtained by the command `./gcloud compute zones list \| grep <region-name>`.|
 | `vpc_name` | The name of the cloud network. | string | ydb-vpc | |
 | `subnet_count` | The number of subnets. | string | 3 | Networks are created in different availability zones. |
 | `subnet_name` | Subnet name prefix. | string | ydb-inner | The full name of the subnet is formed from the subnet name prefix and its sequential creation number. |
