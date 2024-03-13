@@ -46,7 +46,7 @@ variable "subnet_name" {
 variable "vm_count" {
   description = "The number of virtual machines to create."
   type        = number
-  default     = 4
+  default     = 9
 }
 
 variable "vm_name" {
@@ -60,14 +60,14 @@ variable "vm_size" {
   # Use command `./gcloud compute machine-types list --filter="zone:( us-east1-b us-east1-c us-east1-d)"` 
   # to get list of  
   type        = string
-  default     = "e2-small"
+  default     = "f1-micro"
 }
 
 variable "bootdisk_image" {
     description = "Bootdisk image"
     # Use command `./gcloud compute images list --filter="family:ubuntu"` to take list of Ubuntu images.
     type = string
-    default = "ubuntu-minimal-2204-jammy-v20240229"
+    default = "ubuntu-2204-jammy-v20240228"
 }
 
 

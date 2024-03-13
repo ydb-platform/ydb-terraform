@@ -1,7 +1,9 @@
 .terraform
 prod.json
 .terraform.lock.hcl
+.terraform.lock.info
 terraform.tfstate
 terraform.tfstate.backup
 terraform.tfstate.**.backup
 .envrc
+fqdn_list.txt
