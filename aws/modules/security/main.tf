@@ -1,7 +1,7 @@
 resource "aws_security_group" "ydb_intro_sg" {
   name        = "ydb-intro-sg"
   description = "Security group for allowing traffic on ports 21 and 22"
-  vpc_id      = var.ydb-intro-net-id
+  vpc_id      = var.vpc_id
 
   tags = {
     Name = "ydb-intro-sg"
