@@ -1,8 +1,9 @@
 resource "aws_nat_gateway" "ydb-pub-nat" {
-  allocation_id = var.input_eip_id
-  subnet_id     = var.input_pub_subnet_id
+  count         = 3
+  allocation_id = var.input_eips_ids[count.index]
+  subnet_id     = var.input_public_subnets_ids[count.index]
 
   tags = {
-    Name = "gw NAT"
+    Name        = "NAT-${count.index + 1}"
   }
 }

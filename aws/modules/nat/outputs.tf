@@ -1,3 +1,3 @@
-output "nat_id" {
-    value = aws_nat_gateway.ydb-pub-nat.id
+output "nats_ids" {
+    value = aws_nat_gateway.ydb-pub-nat.*.id
 }

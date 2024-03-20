@@ -3,19 +3,9 @@ variable "input_vpc_id" {
     type = string
 }
 
-variable "input_nat_id" {
-    description = "ID of NAT"
-    type = string
-}
-
 variable "input_subnets_count" {
     description = "Count of subnets."
     type = number
-}
-
-variable "input_subnets_ids" {
-    description = "IDs of subnets."
-    type = list(string)
 }
 
 variable "input_igw_id" {
@@ -23,7 +13,17 @@ variable "input_igw_id" {
     type = string
 }
 
-variable "input_pub_subnet_id" {
+variable "input_nats_ids" {
     description = "ID of IGW"
-    type = string
+    type = list(string)
+}
+
+variable "input_private_subnets_ids" {
+    description = "IDs of subnets."
+    type = list(string)
+}
+
+variable "input_pub_subnets_ids" {
+    description = "ID of IGW"
+    type = list(string)
 }

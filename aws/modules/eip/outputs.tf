@@ -1,3 +1,3 @@
-output "eip_id" {
-    value = aws_eip.internet_gateway.id
+output "eips_ids" {
+    value = aws_eip.nat_eip.*.id
 }

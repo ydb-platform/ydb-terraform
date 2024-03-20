@@ -1,9 +1,9 @@
-variable "input_eip_id" {
+variable "input_eips_ids" {
     description = "EIP ID"
-    type = string
+    type = list(string)
 }
 
-variable "input_pub_subnet_id" {
+variable "input_public_subnets_ids" {
     description = "ID of public subnet"
-    type = string
+    type = list(string)
 }
