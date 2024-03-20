@@ -1,4 +1,4 @@
-variable "ydb-intro-net-id" {
+variable "vpc_id" {
     description = "The ID of the VPC where your resources will be deployed."
     type = string
 }

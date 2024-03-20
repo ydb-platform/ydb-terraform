@@ -25,3 +25,13 @@ variable "input_intro_net_id" {
     type = string
     
 }
+
+variable "input_bastion_ip" {
+    description = "IP of bastion host"
+    type = string
+}
+
+variable "input_bastion_prefix" {
+    description = "Prefix name of bastion host"
+    type = string
+}

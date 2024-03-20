@@ -30,6 +30,30 @@ variable "availability_zones" {
   default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
 
+variable "private_instances_ami" {
+  description = "Ami ID"
+  type = string
+  default = "ami-008fe2fc65df48dac"
+}
+
+
+variable "bastion_instance_ami" {
+  description = "Bastion instance Ami ID"
+  type = string
+  default = "ami-008fe2fc65df48dac"
+}
+
+variable "bastion_hostname_prefix" {
+  description = "Bastion hostname prefix"
+  type = string
+  default = "bastion"
+}
+
+variable "bastion_instance_type" {
+  description = "Bastion instance type"
+  type = string
+  default = "t2.micro"
+}
 
 #============== NETS control vars zone ===============#
 
