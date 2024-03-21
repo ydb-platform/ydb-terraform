@@ -33,3 +33,29 @@ variable "input_vm_prefix" {
     description = "The prefix that will be used for naming VMs and their hostnames."
     type = string
 }
+
+
+variable "input_ebs_name" {
+    description = "Name of ebs"
+    type = string
+}
+
+variable "input_ebs_type" {
+    description = "Type of ebs"
+    type = string
+}
+
+variable "input_ebs_size" {
+    description = "Size of ebs"
+    type = number
+}
+
+variable "input_instance_ami" {
+    description = "Main instance AMI"
+    type = string
+}
+
+variable "input_instance_type" {
+    description = "Instance type"
+    type = string
+}

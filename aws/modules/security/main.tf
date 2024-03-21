@@ -28,6 +28,33 @@ resource "aws_security_group_rule" "icmp" {
   security_group_id = aws_security_group.ydb_intro_sg.id
 }
 
+resource "aws_security_group_rule" "ingress_1900_2000" {
+  type              = "ingress"
+  from_port         = 19001
+  to_port           = 19001 + var.input_instance_value
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.ydb_intro_sg.id
+}
+
+resource "aws_security_group_rule" "ingress_8765_8800" {
+  type              = "ingress"
+  from_port         = 8765
+  to_port           = 8765 + var.input_instance_value
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.ydb_intro_sg.id
+}
+
+resource "aws_security_group_rule" "ingress_2135_2200" {
+  type              = "ingress"
+  from_port         = 2135
+  to_port           = 2135 + var.input_instance_value
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.ydb_intro_sg.id
+}
+
 resource "aws_security_group_rule" "out" {
   type              = "egress"
   from_port         = 0

@@ -7,3 +7,8 @@ variable "allow_ports" {
     description = "A list of port numbers that are allowed through the security group associated with the instances."
     type = list(number)
 }
+
+variable "input_instance_value" {
+    description = "Value of instance"
+    type = number
+}

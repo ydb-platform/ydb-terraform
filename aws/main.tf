@@ -40,10 +40,8 @@ module "key_pair" {
 module "security" {
   source = "./modules/security/"
   
-  # Global input data
   allow_ports = var.allow_ports_list
-
-  # Modules input data
+  input_instance_value = var.vm_count
   vpc_id = module.vpc.vpc_id
 }
 
@@ -53,15 +51,20 @@ module "security" {
 module "instance" {
   source = "./modules/instance/"
 
-  # Global input data
   instance_count = var.vm_count
   input_domain_name = var.domain
   input_vm_prefix = var.vm_prefix
 
-  # Modules input data
+  input_instance_ami = var.instance_ami
+  input_instance_type = var.instance_type
+
   input_security_group_id = module.security.sec_out
   req_key_pair = module.key_pair.key_name
   input_subnet_ids = module.vpc.private_subnets_ids
+
+  input_ebs_name = var.ebs_name
+  input_ebs_type = var.ebs_type
+  input_ebs_size = var.ebs_size
 }
 
 #============== IEP ===================#

@@ -9,7 +9,7 @@ variable "aws_region" {
 variable "aws_profile" {
   description = "AWS profile to use if you have multiple defined in ~/.aws/credentials."
   type = string
-  default = "AWS"
+  #default = "<AWS_profile>"
 }
 
 #=============== VM control vars zone ==============#
@@ -17,7 +17,7 @@ variable "aws_profile" {
 variable "vm_count" {
   description = "The number of VMs to be created."
   type        = number
-  default     = 4
+  default     = 9
 }
 
 variable "availability_zones" {
@@ -27,20 +27,26 @@ variable "availability_zones" {
   # aws ec2 describe-availability-zones --region <region name> 
   
   type        = list(string)
-  default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
-}
-
-variable "private_instances_ami" {
-  description = "Ami ID"
-  type = string
-  default = "ami-008fe2fc65df48dac"
+  default     = ["us-east-1c", "us-east-1b", "us-east-1f"]
 }
 
 
 variable "bastion_instance_ami" {
   description = "Bastion instance Ami ID"
   type = string
-  default = "ami-008fe2fc65df48dac"
+  default = "ami-080e1f13689e07408"
+}
+
+variable "instance_ami" {
+  description = "Instance Ami ID"
+  type = string
+  default = "ami-080e1f13689e07408"
+}
+
+variable "instance_type" {
+  description = "Instance type"
+  default     = "c7a.4xlarge" # 16 vCPU, 16 GB RAM, x86
+  type        = string 
 }
 
 variable "bastion_hostname_prefix" {
@@ -51,8 +57,28 @@ variable "bastion_hostname_prefix" {
 
 variable "bastion_instance_type" {
   description = "Bastion instance type"
+  default     = "t3a.medium" # t3a.medium – 2 vCPU, 4 GB RAM
+  type        = string
+  
+}
+
+variable "ebs_name" {
+  description = "Name of ebs_block_device"
   type = string
-  default = "t2.micro"
+  default = "/dev/sdh"
+}
+
+variable "ebs_type" {
+  description = "Type of ebs_block_device"
+  type = string
+  default = "gp2"
+}
+
+variable "ebs_size" {
+  description = "Size of ebs_block_device"
+  default     = 200 # The min size of ebs is 200 GB.
+  type        = number
+   
 }
 
 #============== NETS control vars zone ===============#
@@ -69,7 +95,7 @@ variable "allow_ports_list" {
   description = "List of ports allowed through the firewall."
   # The ICMP protocol is allowed by default in the security module.
   type        = list(number)
-  default     = [21, 22]
+  default     = [21, 22] # Do not include YDB range ports. All ports are added in the security module.
 }
 
 #=============== DNS control vars zone ================#
