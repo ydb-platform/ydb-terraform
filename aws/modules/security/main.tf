@@ -19,6 +19,17 @@ resource "aws_security_group_rule" "ingress_rules" {
   security_group_id = aws_security_group.ydb_intro_sg.id
 }
 
+resource "aws_security_group_rule" "dns" {
+  count = length(var.allow_ports)
+
+  type              = "ingress"
+  from_port         = 65535
+  to_port           = 65535
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.ydb_intro_sg.id
+}
+
 resource "aws_security_group_rule" "icmp" {
   type              = "ingress"
   from_port         = -1
@@ -28,7 +39,7 @@ resource "aws_security_group_rule" "icmp" {
   security_group_id = aws_security_group.ydb_intro_sg.id
 }
 
-resource "aws_security_group_rule" "ingress_1900_2000" {
+resource "aws_security_group_rule" "ydb_ic_ports" {
   type              = "ingress"
   from_port         = 19001
   to_port           = 19001 + var.input_instance_value
@@ -37,7 +48,7 @@ resource "aws_security_group_rule" "ingress_1900_2000" {
   security_group_id = aws_security_group.ydb_intro_sg.id
 }
 
-resource "aws_security_group_rule" "ingress_8765_8800" {
+resource "aws_security_group_rule" "ydb_mon_ports" {
   type              = "ingress"
   from_port         = 8765
   to_port           = 8765 + var.input_instance_value
@@ -46,7 +57,7 @@ resource "aws_security_group_rule" "ingress_8765_8800" {
   security_group_id = aws_security_group.ydb_intro_sg.id
 }
 
-resource "aws_security_group_rule" "ingress_2135_2200" {
+resource "aws_security_group_rule" "ydb_grpc_ports" {
   type              = "ingress"
   from_port         = 2135
   to_port           = 2135 + var.input_instance_value

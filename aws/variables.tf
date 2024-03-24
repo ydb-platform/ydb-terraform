@@ -94,6 +94,8 @@ variable "subnets_count" {
 variable "allow_ports_list" {
   description = "List of ports allowed through the firewall."
   # The ICMP protocol is allowed by default in the security module.
+  # YDB IC, gRPC and mon ports are allowed too.
+  
   type        = list(number)
   default     = [21, 22] # Do not include YDB range ports. All ports are added in the security module.
 }
