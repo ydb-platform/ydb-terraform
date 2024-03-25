@@ -16,17 +16,11 @@ resource "aws_instance" "ydb-vm" {
     hostname_type        = "resource-name"
   }
 
-  user_data  = <<-EOF
-              #!/bin/bash
-              set -e  # Stop script execution on any error
-              set -x  # Print each script line before execution. Useful for debugging.
-              
-              HOSTNAME="${var.input_vm_prefix}$(( ${count.index} + 1 )).${var.input_domain_name}"
-              
-              echo "Setting hostname to $HOSTNAME"
-              hostnamectl set-hostname $HOSTNAME
-
-              EOF
+  user_data = templatefile("${path.module}/templates/hostname_timesyncd.yaml", {
+    vm_prefix = var.input_vm_prefix
+    count = count.index
+    domain_name = var.input_domain_name
+  })
 
   ebs_block_device {
     device_name          = var.input_ebs_name
