@@ -1,32 +1,32 @@
-#=============== Production enviroment setup ========#
+#=============== Production environment setup ========#
 variable "prod" {
-  description = "Flag to indicate if the environment is production or not."
+  description = "Flag to indicate whether the environment is production."
   type        = bool
   default     = false
 }
 
 variable "testing_instance" {
-  description = "This var automaticaly using, when prod var is false"
-  type = string
-  default = "t2.micro"
+  description = "This variable is automatically used when the 'prod' variable is false."
+  type        = string
+  default     = "t2.micro"
 }
 
 variable "testing_instance_ebs_size" {
-  description = "This var automaticaly using, when prod var is false"
-  type = number
-  default = 40
+  description = "This variable is automatically used when the 'prod' variable is false."
+  type        = number
+  default     = 40
 }
 
 variable "testing_instance_count" {
-  description = "This var automaticaly using, when prod var is false"
-  type = number
-  default = 4
+  description = "This variable is automatically used when the 'prod' variable is false."
+  type        = number
+  default     = 4
 }
 
 variable "testing_instance_bastion" {
-  description = "This var automaticaly using, when prod var is false"
-  type = string
-  default = "t2.micro"
+  description = "This variable is automatically used when the 'prod' variable is false."
+  type        = string
+  default     = "t2.micro"
 }
 
 #=============== Auth vars control zone ===========#

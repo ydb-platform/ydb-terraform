@@ -14,8 +14,8 @@ resource "aws_instance" "bastion" {
     hostname_type = "resource-name"
   }
 
-  user_data = templatefile("${path.module}/templates/hostname_ssh_forword.yaml", {
-    vm_prefix   = var.input_bastion_host_name,
-    domain_name = var.input_domain_name
-  })
+  user_data = <<-EOF
+    #!/bin/bash
+    hostnamectl set-hostname ${var.input_bastion_host_name}.${var.input_domain_name}
+    EOF
 }  

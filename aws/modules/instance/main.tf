@@ -16,11 +16,11 @@ resource "aws_instance" "ydb-vm" {
     hostname_type        = "resource-name"
   }
 
-  user_data = templatefile("${path.module}/templates/hostname_timesyncd.yaml", {
-    vm_prefix = var.input_vm_prefix
-    count = count.index
-    domain_name = var.input_domain_name
-  })
+  user_data = <<-EOF
+    #!/bin/bash
+    hostnamectl set-hostname ${var.input_vm_prefix}${count.index + 1}.${var.input_domain_name}
+    EOF
+
 
   ebs_block_device {
     device_name          = var.input_ebs_name
