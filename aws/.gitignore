@@ -5,3 +5,5 @@ terraform.tfstate
 terraform.tfstate.backup
 terraform.tfstate.**.backup
 .envrc
+output.json
+output.tfplan

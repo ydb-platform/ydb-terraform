@@ -51,12 +51,12 @@ module "security" {
 module "instance" {
   source = "./modules/instance/"
 
-  instance_count = var.vm_count
+  instance_count = var.prod ? var.vm_count : var.testing_instance_count
   input_domain_name = var.domain
   input_vm_prefix = var.vm_prefix
 
   input_instance_ami = var.instance_ami
-  input_instance_type = var.instance_type
+  input_instance_type = var.prod ? var.instance_type : var.testing_instance
 
   input_security_group_id = module.security.sec_out
   req_key_pair = module.key_pair.key_name
@@ -64,7 +64,7 @@ module "instance" {
 
   input_ebs_name = var.ebs_name
   input_ebs_type = var.ebs_type
-  input_ebs_size = var.ebs_size
+  input_ebs_size = var.prod ? var.ebs_size : var.testing_instance_ebs_size
 }
 
 #============== IEP ===================#
@@ -107,7 +107,7 @@ module "bastion" {
   source                       = "./modules/bastion"
   input_public_subnet_id       = module.vpc.public_subnets_ids[0]
   input_key_pair               = module.key_pair.key_name
-  input_bastion_instance_type  = var.bastion_instance_type
+  input_bastion_instance_type  = var.prod ? var.bastion_instance_type : var.testing_instance_bastion
   input_security_group_id      = module.security.sec_out
   input_bastion_host_name      = var.bastion_hostname_prefix
   input_domain_name            = var.domain

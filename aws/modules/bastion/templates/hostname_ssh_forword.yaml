@@ -1,0 +1,16 @@
+#cloud-config
+manage_etc_hosts: true
+
+write_files:
+  - path: /etc/ssh/sshd_config_custom
+    content: |
+      GatewayPorts yes
+      AllowTcpForwarding yes
+
+runcmd:
+  - hostnamectl set-hostname ${vm_prefix}.${domain_name}
+  - echo "Appending custom SSH config..."
+  - cat /etc/ssh/sshd_config_custom >> /etc/ssh/sshd_config
+  - rm /etc/ssh/sshd_config_custom
+  - echo "Reloading SSHD..."
+  - systemctl reload sshd

@@ -20,7 +20,6 @@ resource "aws_security_group_rule" "ingress_rules" {
 }
 
 resource "aws_security_group_rule" "dns" {
-  count = length(var.allow_ports)
 
   type              = "ingress"
   from_port         = 65535
