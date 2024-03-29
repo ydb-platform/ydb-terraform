@@ -52,11 +52,11 @@ module "vpc" {
 
 }
 
-#=========== VMs =============#
+#=========== Instance =============#
 # Create VMs. 
 
-module "ydb_vms" {
-  source         = "./modules/vm/ydb_vms/"
+module "instance" {
+  source         = "./modules/instance"
 
   # Modules data input
   input_static_disks_ids = module.storage.ydb_static_disks_ids

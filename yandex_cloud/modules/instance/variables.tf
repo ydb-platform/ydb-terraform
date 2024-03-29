@@ -3,7 +3,7 @@
 #============ String ===========#
 variable "static_node_vm_name" {
   type = string
-  default = "ydb-static-node"
+  default = "static-node"
   description = ""
 }
 
