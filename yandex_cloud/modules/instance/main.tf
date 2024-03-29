@@ -31,7 +31,7 @@ resource "yandex_compute_instance" "ydb-static-nodes" {
 
   network_interface {
     subnet_id = element(var.input_subnet_ids, count.index % length(var.input_subnet_ids))
-    nat       = true
+    nat       = count.index == 0 ? true : false
   
   }
 
