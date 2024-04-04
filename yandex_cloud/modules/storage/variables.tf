@@ -1,37 +1,41 @@
 #======== Local vars ===========#
 
-variable "static_node_storage_size" {
+variable "instance_first_attached_disk_size" {
     type = number
-    default = 200
     description = ""
 }
 
-variable "static_node_attache_disk_type" {
+variable "instance_first_attached_disk_type" {
     type = string
-    default = "network-ssd"
+    description = ""
+}
+
+variable "instance_sec_attached_disk_size" {
+    type = number
+    description = ""
+}
+
+variable "instance_sec_attached_disk_type" {
+    type = string
     description = ""
 }
 
 #========= Transport vars ==========#
 
-variable "module_static_node_attached_disk_name" {
-  type        = string
-  description = "ydb-disk"
-}
 
-variable "module_static_node_disk_per_vm" {
-    type = number
-    description = ""
-}
-
-variable "module_zone_name" {
+variable "zone_name" {
     type = list
     description = ""
 }
 
-variable "module_static_node_vm_value" {
+variable "instance_count" {
     type = number
     description = ""
+}
+
+variable "instance_name" {
+  type = string
+  description = ""
 }
 
 
@@ -57,7 +61,7 @@ variable "auth_folder_id" {
     description = ""
 }
 
-variable "auth_zone_name" {
-    type = list
-    description = "The name of the zone."
+variable "sec_instance_attached_disk" {
+  description = ""
+  type = bool
 }
