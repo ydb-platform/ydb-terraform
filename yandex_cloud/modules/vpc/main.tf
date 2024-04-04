@@ -3,6 +3,8 @@
 resource "yandex_vpc_network" "ydb-inner-net" {
   name = "ydb-inner-net"
   folder_id = var.auth_folder_id
+
+
 }
 
 resource "yandex_vpc_subnet" "add-subnet" {
@@ -13,6 +15,8 @@ resource "yandex_vpc_subnet" "add-subnet" {
   network_id     = yandex_vpc_network.ydb-inner-net.id
   folder_id      = var.auth_folder_id
   route_table_id = yandex_vpc_route_table.all-route.id
+
+  depends_on = [yandex_vpc_route_table.all-route]
 
 }
 
@@ -28,4 +32,6 @@ resource "yandex_vpc_route_table" "all-route" {
     destination_prefix = "0.0.0.0/0"
     gateway_id         = "${yandex_vpc_gateway.egress-gateway.id}"
   }
+
+  depends_on = [yandex_vpc_gateway.egress-gateway]
 }

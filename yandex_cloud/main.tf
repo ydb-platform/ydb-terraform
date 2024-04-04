@@ -22,18 +22,21 @@ terraform {
 module "storage" {
   source = "./modules/storage/"
 
-  # Global data input
-  module_zone_name = var.zone_name
-  module_static_node_disk_per_vm = var.static_node_disk_per_vm
-  module_static_node_attached_disk_name = var.static_node_attached_disk_name
-  module_static_node_vm_value = var.vm_count
+  zone_name = var.zone_name
+  instance_count = var.instance_count
 
   # Auth data input
   auth_key_path = var.key_path
   auth_cloud_id = var.cloud_id
   auth_profile = var.profile
   auth_folder_id = var.folder_id
-  auth_zone_name = var.zone_name
+
+  instance_name = var.instance_name
+  sec_instance_attached_disk = var.sec_instance_attached_disk
+  instance_first_attached_disk_type = var.instance_first_attached_disk_type
+  instance_first_attached_disk_size = var.instance_first_attached_disk_size
+  instance_sec_attached_disk_type = var.instance_sec_attached_disk_type
+  instance_sec_attached_disk_size = var.instance_sec_attached_disk_size
 
 }
 
@@ -58,17 +61,26 @@ module "vpc" {
 module "instance" {
   source         = "./modules/instance"
 
+  instance_image_id = var.instance_image_id
+  instance_count = var.instance_count
+  instance_platform = var.instance_platform
+  instance_hostname = var.instance_hostname
+  instance_cores = var.instance_cores
+  instance_memory = var.instance_memory
+  instance_first_attached_disk_type = var.instance_first_attached_disk_type
+  map_first_disks_names_ids = module.storage.map_first_disks_names_ids
+  map_sec_disks_names_ids = module.storage.map_sec_disks_names_ids
+  instance_name = var.instance_name
+  sec_instance_attached_disk = var.sec_instance_attached_disk
+
   # Modules data input
-  input_static_disks_ids = module.storage.ydb_static_disks_ids
+  
   input_subnet_ids  = module.vpc.subnet_ids
-  input_module_static_node_disk_per_vm = var.static_node_disk_per_vm
+
 
   # Global data input
-  module_static_node_attached_disk_name = var.static_node_attached_disk_name
   module_ssh_key_pub_path = var.ssh_key_pub_path
   module_user = var.user
-  module_static_node_vm_value = var.vm_count
-  module_vps_platform = var.vps_platform
   module_domain = var.domain
 
   # Auth data input
@@ -99,5 +111,10 @@ module "dns" {
   auth_profile = var.profile
   auth_folder_id = var.folder_id
   auth_zone_name = var.zone_name
+}
+
+resource "local_file" "ydb_nodes_hosts" {
+    content  = join("\n", module.instance.instances_fqdn)
+    filename = "hosts.txt"
 }
 

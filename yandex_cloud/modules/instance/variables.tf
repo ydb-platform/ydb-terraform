@@ -1,97 +1,91 @@
-# ============== Local vars =====================#
-
 #============ String ===========#
-variable "static_node_vm_name" {
-  type = string
-  default = "static-node"
-  description = ""
+
+variable "instance_count" {
+  description = "Instance count"
+  type = number
 }
 
-variable "static_node_hostname" {
-  type = string
-  default = "static-node"
-  description = ""
-}
-
-variable "static_node_attache_disk_type" {
-  type = string
-  default = "network-ssd"
-  description = "Type of the attached disk (network-ssd, network-hdd, network-ssd-nonreplicated, network-ssd-io-m3)"
-}
-
-variable "os_image_id" {
-  type = string
-  default = "fd8clogg1kull9084s9o"
+variable "instance_image_id" {
   description = "Ubuntu 22.04 LTS image. Run `yc compute image list --folder-id standard-images` to get a list of available OS images."
+  type = string
+  
 }
 
-#========= Number ===============#
+variable "instance_platform" {
+  description = "ID of instance platform"
+  type = string
+}
 
-variable "static_node_cores" {
+variable "instance_hostname" {
+  description = "Instance hostname"
+  type = string
+}
+
+variable "instance_cores" {
+  description = "Number of vCPUs to be add."
   type = number
-  default = 16
-  description = ""
 }
 
-variable "static_node_memory" {
+variable "instance_memory" {
+  description = "Value of RAM instance."
   type = number
-  default = 16
-  description = ""
 }
-
 
 variable "boot_disk_size" {
+  description = "Size of the attached disk, GB (min 1 GB, max 256 TB)"
   type = number
   default = 40
-  description = "Size of the attached disk, GB (min 1 GB, max 256 TB)"
+  
+}
+
+variable "instance_first_attached_disk_type" {
+  description = "Type of disk instance attached."
+  type = string
+}
+
+variable "map_first_disks_names_ids" {
+  description = "Map of first disks names and ids for attache to instance"
+  type = map
+}
+
+variable "map_sec_disks_names_ids" {
+  description = "Map of secondary disks names and ids for attache to instance"
+  type = map
+}
+
+variable "sec_instance_attached_disk" {
+  description = ""
+  type = bool
+}
+
+variable "instance_name" {
+  description = "Instance name"
+  type = string
 }
 
 #================= Transport vars =============#
-
-variable "input_static_disks_ids" {
-  description = "List of disk IDs for attaching to YDB VMs"
-  type        = list(string)
-}
-
-variable "module_vps_platform" {
-  type = string
-  description = ""
-}
 
 variable "input_subnet_ids" {
   description = "List of subnet IDs to attach the VMs"
   type        = list(string)
 }
 
-variable "module_static_node_vm_value" {
-  type = number
-  description = ""
-}
-
 
 variable "module_domain" {
+  description = " YDB local DNS domain"
   type = string
-  description = ""
-}
-
-variable "input_module_static_node_disk_per_vm" {
-  type = number
-  description = ""
-}
-
-variable "module_static_node_attached_disk_name" {
-  type = string
-  description = ""
+  
 }
 
 variable "module_ssh_key_pub_path" {
+  description = "Path to public SSH key"
   type = string
-  description = ""
+  
 }
 
 variable "module_user" {
+  description = "User name for SSH connect"
   type = string
-  description = ""
 }
 
 

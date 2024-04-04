@@ -1,33 +1,44 @@
 #============== Create VM for static nodes ================#
+
 resource "yandex_compute_instance" "ydb-static-nodes" {
-  count = var.module_static_node_vm_value
-  platform_id = var.module_vps_platform
-  name  = "${var.static_node_vm_name}-${count.index + 1}"
+  count = var.instance_count
+  platform_id = var.instance_platform
+  name  = "${var.instance_name}-${count.index + 1}"
   zone  = element(var.auth_zone_name, count.index % length(var.auth_zone_name))
   allow_stopping_for_update = true
-  hostname = "${var.static_node_hostname}-${count.index + 1}.${var.module_domain}"
+  hostname = "${var.instance_hostname}-${count.index + 1}.${var.module_domain}"
   
 
   resources {
-    cores  = var.static_node_cores
-    memory = var.static_node_memory
+    cores  = var.instance_cores
+    memory = var.instance_memory
   }
 
   boot_disk {
     initialize_params {
-      image_id = var.os_image_id
+      image_id = var.instance_image_id
       size = var.boot_disk_size
-      type = var.static_node_attache_disk_type
+      type = var.instance_first_attached_disk_type
+      name = "${var.instance_name}-${count.index + 1}-boot"
     }
   }
 
   dynamic "secondary_disk" {
-    for_each = slice(var.input_static_disks_ids, count.index * var.input_module_static_node_disk_per_vm, (count.index + 1) * var.input_module_static_node_disk_per_vm)
+    for_each = { for k, v in var.map_first_disks_names_ids : k => v if substr(k, 0, length(k) - 2) == "${var.instance_name}-${count.index + 1}" && substr(k, -1, 1) == "1"
+}
     content {
       disk_id = secondary_disk.value
-      device_name = "${var.module_static_node_attached_disk_name}-${secondary_disk.key + 1}"
     }
   }
+
+  dynamic "secondary_disk" {
+    for_each = var.sec_instance_attached_disk ? { for k, v in var.map_sec_disks_names_ids : k => v if substr(k, 0, length(k) - 2) == "${var.instance_name}-${count.index + 1}" && substr(k, -1, 1) == "2"
+} : {}
+    content {
+      disk_id = secondary_disk.value
+    }
+  }
+
 
   network_interface {
     subnet_id = element(var.input_subnet_ids, count.index % length(var.input_subnet_ids))
