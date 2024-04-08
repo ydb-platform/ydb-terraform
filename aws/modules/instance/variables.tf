@@ -45,21 +45,16 @@ variable "input_instance_type" {
 }
 
 variable "input_boot_disk_size" {
-    description = ""
+    description = "Size of boot disk"
     type = number
 }
 
 variable "input_boot_disk_type" {
-    description = ""
+    description = "Type of boot disk"
     type = string
 }
 
 variable "input_instance_name_prefix" {
-    description = ""
+    description = "Name prefix of instance"
     type = string
-}
-
-variable "input_instance_increase_cpu_cores" {
-    description = ""
-    type = number
 }
