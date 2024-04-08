@@ -2,7 +2,7 @@
 variable "prod" {
   description = "Flag to indicate whether the environment is production."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "testing_instance" {
@@ -14,7 +14,7 @@ variable "testing_instance" {
 variable "testing_instance_ebs_size" {
   description = "This variable is automatically used when the 'prod' variable is false."
   type        = number
-  default     = 40
+  default     = 50
 }
 
 variable "testing_instance_count" {
@@ -51,6 +51,12 @@ variable "vm_count" {
   default     = 9
 }
 
+variable "instance_name_prefix" {
+  description = ""
+  type = string
+  default = "ydb-node"
+}
+
 variable "availability_zones" {
   description = "List of availability zones in the region." 
   # We are using 3 availability zones to create 3 VMs per zone, 9 VMs total.
@@ -76,7 +82,7 @@ variable "instance_ami" {
 
 variable "instance_type" {
   description = "Instance type"
-  default     = "c7a.4xlarge" # 16 vCPU, 16 GB RAM, x86
+  default     = "c7a.4xlarge" # 16 vCPU, 32 GB RAM, x86
   type        = string 
 }
 
@@ -93,23 +99,59 @@ variable "bastion_instance_type" {
   
 }
 
-variable "ebs_name" {
+variable "boot_disk_size" {
+  description = ""
+  type = number
+  default = 10
+}
+
+variable "boot_disk_type" {
+  description = ""
+  type = string
+  default = "gp2"
+}
+
+variable "first_ebs_name" {
   description = "Name of ebs_block_device"
   type = string
   default = "/dev/sdh"
 }
 
-variable "ebs_type" {
+variable "first_ebs_type" {
   description = "Type of ebs_block_device"
   type = string
   default = "gp2"
 }
 
-variable "ebs_size" {
+variable "first_ebs_size" {
   description = "Size of ebs_block_device"
   default     = 200 # The min size of ebs is 200 GB.
   type        = number
-   
+}
+
+variable "sec_attached_disk" {
+  description = ""
+  default = false
+  type = bool
+}
+
+variable "sec_ebs_name" {
+  description = "Name of secondary ebs_block_device"
+  type = string
+  default = "/dev/sdj"
+}
+
+variable "sec_ebs_type" {
+  description = "Type of secondary ebs_block_device"
+  type = string
+  default = "gp2"
+}
+
+
+variable "sec_ebs_size" {
+  description = "Size of secondary ebs_block_device"
+  default     = 50
+  type        = number
 }
 
 #============== NETS control vars zone ===============#

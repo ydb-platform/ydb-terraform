@@ -34,22 +34,6 @@ variable "input_vm_prefix" {
     type = string
 }
 
-
-variable "input_ebs_name" {
-    description = "Name of ebs"
-    type = string
-}
-
-variable "input_ebs_type" {
-    description = "Type of ebs"
-    type = string
-}
-
-variable "input_ebs_size" {
-    description = "Size of ebs"
-    type = number
-}
-
 variable "input_instance_ami" {
     description = "Main instance AMI"
     type = string
@@ -58,4 +42,24 @@ variable "input_instance_ami" {
 variable "input_instance_type" {
     description = "Instance type"
     type = string
+}
+
+variable "input_boot_disk_size" {
+    description = ""
+    type = number
+}
+
+variable "input_boot_disk_type" {
+    description = ""
+    type = string
+}
+
+variable "input_instance_name_prefix" {
+    description = ""
+    type = string
+}
+
+variable "input_instance_increase_cpu_cores" {
+    description = ""
+    type = number
 }

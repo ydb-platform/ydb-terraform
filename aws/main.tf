@@ -45,6 +45,26 @@ module "security" {
   vpc_id = module.vpc.vpc_id
 }
 
+#========== Storage =========#
+
+module "storage" {
+  source = "./modules/storage"
+  instance_count = var.prod ? var.vm_count : var.testing_instance_count
+
+  input_instance_name_prefix = var.instance_name_prefix
+
+  input_first_ebs_name = var.first_ebs_name
+  input_first_ebs_type = var.first_ebs_type
+  input_first_ebs_size = var.prod ? var.first_ebs_size : var.testing_instance_ebs_size
+  input_availability_zones = var.availability_zones
+
+  input_sec_attached_disk = var.sec_attached_disk
+  input_sec_ebs_name = var.sec_ebs_name
+  input_sec_ebs_type = var.sec_ebs_type
+  input_sec_ebs_size = var.sec_ebs_size
+
+}
+
 #=========== Instance ===========#
 # Create EC2 instances with attached SSD disks.
 
@@ -52,6 +72,7 @@ module "instance" {
   source = "./modules/instance/"
 
   instance_count = var.prod ? var.vm_count : var.testing_instance_count
+  input_instance_name_prefix = var.instance_name_prefix
   input_domain_name = var.domain
   input_vm_prefix = var.vm_prefix
 
@@ -62,10 +83,24 @@ module "instance" {
   req_key_pair = module.key_pair.key_name
   input_subnet_ids = module.vpc.private_subnets_ids
 
-  input_ebs_name = var.ebs_name
-  input_ebs_type = var.ebs_type
-  input_ebs_size = var.prod ? var.ebs_size : var.testing_instance_ebs_size
+  input_boot_disk_size = var.boot_disk_size
+  input_boot_disk_type = var.boot_disk_type
+
+  depends_on = [module.storage]
 }
+
+#========== Attache volumes to instance =======#
+
+module "attachment" {
+  source = "./modules/attachment"
+  
+  input_map_first_ebs_name_id = module.storage.map_first_ebs_name_id
+  input_map_sec_ebs_name_id = var.sec_attached_disk ? module.storage.map_sec_ebs_name_id : {}
+  input_map_instance_name_id = module.instance.map_instance_name_id
+
+  depends_on = [module.storage, module.instance]
+}
+
 
 #============== IEP ===================#
 # Set up internet gateways by aws_internet_gateway.
