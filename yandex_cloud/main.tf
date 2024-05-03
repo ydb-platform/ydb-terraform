@@ -32,11 +32,11 @@ module "storage" {
   auth_folder_id = var.folder_id
 
   instance_name = var.instance_name
-  sec_instance_attached_disk = var.sec_instance_attached_disk
-  instance_first_attached_disk_type = var.instance_first_attached_disk_type
-  instance_first_attached_disk_size = var.instance_first_attached_disk_size
-  instance_sec_attached_disk_type = var.instance_sec_attached_disk_type
-  instance_sec_attached_disk_size = var.instance_sec_attached_disk_size
+  instance_boot_disk_type = var.instance_boot_disk_type
+  instance_boot_disk_size = var.instance_boot_disk_size
+  instance_data_disks_per_vm = var.instance_data_disks_per_vm
+  instance_data_disk_type = var.instance_data_disk_type
+  instance_data_disk_size = var.instance_data_disk_size
 
 }
 
@@ -67,11 +67,10 @@ module "instance" {
   instance_hostname = var.instance_hostname
   instance_cores = var.instance_cores
   instance_memory = var.instance_memory
-  instance_first_attached_disk_type = var.instance_first_attached_disk_type
-  map_first_disks_names_ids = module.storage.map_first_disks_names_ids
+  instance_boot_disk_type = var.instance_boot_disk_type
   map_sec_disks_names_ids = module.storage.map_sec_disks_names_ids
   instance_name = var.instance_name
-  sec_instance_attached_disk = var.sec_instance_attached_disk
+  instance_data_disks_per_vm = var.instance_data_disks_per_vm
 
   # Modules data input
   

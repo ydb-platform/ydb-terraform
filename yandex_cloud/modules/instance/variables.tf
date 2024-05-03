@@ -38,14 +38,9 @@ variable "boot_disk_size" {
   
 }
 
-variable "instance_first_attached_disk_type" {
+variable "instance_boot_disk_type" {
   description = "Type of disk instance attached."
   type = string
-}
-
-variable "map_first_disks_names_ids" {
-  description = "Map of first disks names and ids for attache to instance"
-  type = map
 }
 
 variable "map_sec_disks_names_ids" {
@@ -53,9 +48,9 @@ variable "map_sec_disks_names_ids" {
   type = map
 }
 
-variable "sec_instance_attached_disk" {
+variable "instance_data_disks_per_vm" {
   description = ""
-  type = bool
+  type = number
 }
 
 variable "instance_name" {

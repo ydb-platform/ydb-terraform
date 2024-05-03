@@ -1,21 +1,26 @@
 #======== Local vars ===========#
 
-variable "instance_first_attached_disk_size" {
+variable "instance_boot_disk_size" {
     type = number
     description = ""
 }
 
-variable "instance_first_attached_disk_type" {
+variable "instance_boot_disk_type" {
     type = string
     description = ""
 }
 
-variable "instance_sec_attached_disk_size" {
+variable "instance_data_disks_per_vm" {
     type = number
     description = ""
 }
 
-variable "instance_sec_attached_disk_type" {
+variable "instance_data_disk_size" {
+    type = number
+    description = ""
+}
+
+variable "instance_data_disk_type" {
     type = string
     description = ""
 }
@@ -59,9 +64,4 @@ variable "auth_profile" {
 variable "auth_folder_id" {
     type = string
     description = ""
-}
-
-variable "sec_instance_attached_disk" {
-  description = ""
-  type = bool
 }

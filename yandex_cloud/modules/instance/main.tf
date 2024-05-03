@@ -3,10 +3,10 @@
 resource "yandex_compute_instance" "ydb-static-nodes" {
   count = var.instance_count
   platform_id = var.instance_platform
-  name  = "${var.instance_name}-${count.index + 1}"
+  name  = "${var.instance_name}-${1 + count.index}"
   zone  = element(var.auth_zone_name, count.index % length(var.auth_zone_name))
   allow_stopping_for_update = true
-  hostname = "${var.instance_hostname}-${count.index + 1}.${var.module_domain}"
+  hostname = "${var.instance_hostname}-${1 + count.index}.${var.module_domain}"
   
 
   resources {
@@ -18,22 +18,14 @@ resource "yandex_compute_instance" "ydb-static-nodes" {
     initialize_params {
       image_id = var.instance_image_id
       size = var.boot_disk_size
-      type = var.instance_first_attached_disk_type
-      name = "${var.instance_name}-${count.index + 1}-boot"
+      type = var.instance_boot_disk_type
+      name = "${var.instance_name}-${1 + count.index}-boot"
     }
   }
 
   dynamic "secondary_disk" {
-    for_each = { for k, v in var.map_first_disks_names_ids : k => v if substr(k, 0, length(k) - 2) == "${var.instance_name}-${count.index + 1}" && substr(k, -1, 1) == "1"
+    for_each = { for k, v in var.map_sec_disks_names_ids : k => v if startswith(k, "${var.instance_name}-${1 + count.index}")
 }
-    content {
-      disk_id = secondary_disk.value
-    }
-  }
-
-  dynamic "secondary_disk" {
-    for_each = var.sec_instance_attached_disk ? { for k, v in var.map_sec_disks_names_ids : k => v if substr(k, 0, length(k) - 2) == "${var.instance_name}-${count.index + 1}" && substr(k, -1, 1) == "2"
-} : {}
     content {
       disk_id = secondary_disk.value
     }
