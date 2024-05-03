@@ -6,7 +6,7 @@ To create infrastructure in Yandex Cloud using Terraform, you need to:
 1. Prepare the cloud for work:
     * [Register](https://console.cloud.yandex.ru/) in Yandex Cloud.
     * [Connect](https://cloud.yandex.com/en/docs/billing/concepts/billing-account) a billing account.
-    * [Ensure](https://console.cloud.yandex.ru/billing) there are sufficient funds for creating nine VMs.
+    * [Ensure](https://console.cloud.yandex.ru/billing) there are sufficient funds for creating three VMs.
 2. Install and configure Yandex Cloud CLI:
     * [Download](https://cloud.yandex.ru/en/docs/cli/quickstart) Yandex Cloud CLI.
     * [Create](https://cloud.yandex.ru/en/docs/cli/quickstart#initialize) a profile.
