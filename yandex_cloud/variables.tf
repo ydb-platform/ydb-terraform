@@ -3,19 +3,17 @@
 variable "key_path" {
     description = "Path to the json file with service account credentials"
     type = string
-    #default = "./prod.json"
-    
+    # default = "./prod.json"
 }
 
 variable "cloud_id" {
-    description = "Yandex Cloud ID"
+    description = "Yandex cloud ID"
     type = string
-    #default = "<yandex cloud ID >" 
-    
+    # default = "<yandex_cloud_id>"
 }
 
 variable "profile" {
-    description = "Profile section from"
+    description = "Profile section"
     type = string
     default = "Yandex"
     
@@ -24,7 +22,7 @@ variable "profile" {
 variable "folder_id" {
     description = "Yandex folder ID"
     type = string
-    #default = "<yandex cloud folder ID>"
+    # default = "<yandex_folder_id>"
 }
 
 variable "zone_name" {
@@ -39,7 +37,7 @@ variable "zone_name" {
 
 variable "instance_count" {
     type = number
-    default = 9
+    default = 3
     description = "Number of VMs being created"
 }
 
@@ -52,26 +50,26 @@ variable "instance_platform" {
 variable "instance_cores" {
   type = number
   default = 16
-  description = ""
+  description = "Number of vCPU per instance"
 }
 
 variable "instance_memory" {
   type = number
   default = 16
-  description = ""
+  description = "GB of RAM per instance"
 }
 
 
 variable "instance_name" {
   type = string
   default = "static-node"
-  description = ""
+  description = "Prefix for node names"
 }
 
 variable "instance_hostname" {
   type = string
   default = "static-node"
-  description = ""
+  description = "Prefix for node hostnames"
 }
 
 variable "instance_image_id" {
@@ -88,44 +86,44 @@ variable "user" {
 
 variable "ssh_key_pub_path" {
     type = string
-    #default = "<path to SSH pub>"
     description = "Path to the public part of SSH-key"
+    # default = "~/<path_to_ssh_key>.pub"
 }
 
 #=============== Disk control vars zone ==============#
 
-#========== First attached instance disk =======#
+#========== Instance boot disk =======#
 
-variable "instance_first_attached_disk_size" {
+variable "instance_boot_disk_size" {
     type = number
-    default = 250
-    description = ""
+    default = 80
+    description = "VM boot disk size in GB"
 }
 
-variable "instance_first_attached_disk_type" {
+variable "instance_boot_disk_type" {
     type = string
     default = "network-ssd"
-    description = ""
+    description = "VM boot disk type"
 }
 
-#========== Second attached instance disk =======#
+#========== Instance data disks =======#
 
-variable "sec_instance_attached_disk" {
-    description = "Variable to determine if a secondary disk is attached."
-    type = bool
-    default = false
-}
-
-variable "instance_sec_attached_disk_size" {
+variable "instance_data_disks_per_vm" {
     type = number
-    default = 50
-    description = ""
+    default = 3
+    description = "Number of data disks attached to each VM"
 }
 
-variable "instance_sec_attached_disk_type" {
+variable "instance_data_disk_size" {
+    type = number
+    default = 186
+    description = "Size of each data disk in GB"
+}
+
+variable "instance_data_disk_type" {
     type = string
-    default = "network-ssd"
-    description = ""
+    default = "network-ssd-nonreplicated"
+    description = "Type of each data disk"
 }
 
 

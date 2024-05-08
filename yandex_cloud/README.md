@@ -6,7 +6,7 @@ To create infrastructure in Yandex Cloud using Terraform, you need to:
 1. Prepare the cloud for work:
     * [Register](https://console.cloud.yandex.ru/) in Yandex Cloud.
     * [Connect](https://cloud.yandex.com/en/docs/billing/concepts/billing-account) a billing account.
-    * [Ensure](https://console.cloud.yandex.ru/billing) there are sufficient funds for creating nine VMs.
+    * [Ensure](https://console.cloud.yandex.ru/billing) there are sufficient funds for creating three VMs.
 2. Install and configure Yandex Cloud CLI:
     * [Download](https://cloud.yandex.ru/en/docs/cli/quickstart) Yandex Cloud CLI.
     * [Create](https://cloud.yandex.ru/en/docs/cli/quickstart#initialize) a profile.
@@ -69,11 +69,18 @@ The project's global variables, which contain data for authentication, configura
 | `cloud_id` | Cloud ID. | string | `<yandex cloud ID>` | List of available clouds can be obtained with `yc resource-manager cloud list`. |
 | `profile` | Name of the security profile from the `~/.aws/credentials` file. | string | "Yandex" | If there are no security profiles in `~/.aws/credentials`, it should be created by adding `[Yandex]` before `aws_access_key_id` and `aws_secret_access_key`. |
 | `folder_id` | Yandex Cloud folder ID. | string | `<yandex cloud folder ID>` | Yandex Cloud folder ID can be obtained with `yc resource-manager folder list`. |
-| `vm_count` | Number of VMs to be created in the cloud. | number | 9 | The minimum number of VMs for creating a YDB cluster is 8. |
-| `static_node_disk_per_vm` | Number of disks attached to each VM. | number | 1 | |
-| `vps_platform` | Type of virtualization platform. | string | `standard-v3` | standard-v1 – Intel Broadwell, -v2 – Intel Cascade Lake, -v3 – Intel Ice Lake. |
-| `static_node_attached_disk_name` | Name of the disk attached to VM. | string | "ydb-data-disk" | |
+| `zone_name` | Availability zones of Yandex Cloud. | list | ["ru-central1-a", "ru-central1-b", "ru-central1-d"] | The list of availability zones does not include ru-central1-c zone – it is being phased out. |
+| `instance_count` | Number of VMs to be created in the cloud. | number | 3 | The minimum number of VMs for creating a YDB cluster is 3. |
+| `instance_platform` | Type of virtualization platform. | string | `standard-v3` | standard-v1 – Intel Broadwell, -v2 – Intel Cascade Lake, -v3 – Intel Ice Lake. |
+| `instance_cores` | Number of vCPU per instance | number | 16 |
+| `instance_memory` | GB of RAM per instance | number | 16 |
+| `instance_name` | "Prefix for node names | string | `static-node` |
+| `instance_hostname` | Prefix for node hostnames | string | `static-node` |
+| `instance_image_id` | VM image to use | string | `fd8clogg1kull9084s9o` |
 | `user` | User for SSH connection. | string | "ubuntu" | |
 | `ssh_key_pub_path` | Path to the SSH public key part. | string | "<path to SSH pub>" | An SSH key pair can be created using the `ssh-keygen` command. |
-| `zone_name` | Availability zones of Yandex Cloud. | list | ["ru-central1-a", "ru-central1-b", "ru-central1-d"] | The list of availability zones does not include ru-central1-c zone – it is being phased out. |
+| `instance_boot_disk_size` | VM boot disk size in GB | number | 80 |
+| `instance_boot_disk_type` | VM boot disk type | string | `network-ssd` |
+| `instance_data_disk_size` | Size of each data disk in GB | number | 186 |
+| `instance_data_disk_type` | Type of each data disk | string | `network-ssd-nonreplicated` |
 | `domain` | Name of the DNS domain zone. | string | "ydb-cluster.com." | The domain name must always end with a dot. |
