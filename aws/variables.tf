@@ -2,7 +2,7 @@
 variable "prod" {
   description = "Flag to indicate whether the environment is production."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "testing_instance" {
@@ -88,8 +88,8 @@ variable "instance_type" {
 
 variable "bastion_hostname_prefix" {
   description = "Bastion hostname prefix"
-  type = string
-  default = "bastion"
+  type        = string
+  default     = "bastion"
 }
 
 variable "bastion_instance_type" {
@@ -117,42 +117,30 @@ variable "first_ebs_name" {
   default = "/dev/sdh"
 }
 
-variable "first_ebs_type" {
-  description = "Type of ebs_block_device"
-  type = string
-  default = "gp2"
-}
-
-variable "first_ebs_size" {
-  description = "Size of ebs_block_device"
-  default     = 200 # The min size of ebs is 200 GB.
-  type        = number
-}
-
-variable "sec_attached_disk" {
-  description = ""
-  default = false
-  type = bool
-}
-
 variable "sec_ebs_name" {
   description = "Name of secondary ebs_block_device"
   type = string
   default = "/dev/sdj"
 }
 
-variable "sec_ebs_type" {
-  description = "Type of secondary ebs_block_device"
+variable "third_ebs_name" {
+  description = "Name of secondary ebs_block_device"
+  type = string
+  default = "/dev/sdg"
+}
+
+variable "attached_disk_type" {
+  description = "Type of ebs_block_device"
   type = string
   default = "gp2"
 }
 
-
-variable "sec_ebs_size" {
-  description = "Size of secondary ebs_block_device"
-  default     = 50
+variable "attached_disk_size" {
+  description = "Size of ebs_block_device"
+  default     = 200 # The min size of ebs is 200 GB.
   type        = number
 }
+
 
 #============== NETS control vars zone ===============#
 
