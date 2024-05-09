@@ -48,20 +48,14 @@ module "security" {
 #========== Storage =========#
 
 module "storage" {
-  source = "./modules/storage"
-  instance_count = var.prod ? var.vm_count : var.testing_instance_count
+  source                       = "./modules/storage"
+  instance_count               = var.prod ? var.vm_count : var.testing_instance_count
 
-  input_instance_name_prefix = var.instance_name_prefix
+  input_instance_name_prefix   = var.instance_name_prefix
 
-  input_first_ebs_name = var.first_ebs_name
-  input_first_ebs_type = var.first_ebs_type
-  input_first_ebs_size = var.prod ? var.first_ebs_size : var.testing_instance_ebs_size
-  input_availability_zones = var.availability_zones
-
-  input_sec_attached_disk = var.sec_attached_disk
-  input_sec_ebs_name = var.sec_ebs_name
-  input_sec_ebs_type = var.sec_ebs_type
-  input_sec_ebs_size = var.sec_ebs_size
+  input_ebs_attached_disk_type = var.attached_disk_type
+  input_ebs_attached_disk_size = var.prod ? var.attached_disk_size : var.testing_instance_ebs_size
+  input_availability_zones     = var.availability_zones
 
 }
 
@@ -94,9 +88,15 @@ module "instance" {
 module "attachment" {
   source = "./modules/attachment"
   
-  input_map_first_ebs_name_id = module.storage.map_first_ebs_name_id
-  input_map_sec_ebs_name_id = var.sec_attached_disk ? module.storage.map_sec_ebs_name_id : {}
-  input_map_instance_name_id = module.instance.map_instance_name_id
+  input_map_first_ebs_name_id   = module.storage.map_first_ebs_name_id
+  input_map_sec_ebs_name_id     = module.storage.map_sec_ebs_name_id
+  input_map_third_ebs_name_id   = module.storage.map_third_ebs_name_id
+  input_map_instance_name_id    = module.instance.map_instance_name_id
+
+  input_first_ebs_name          = var.first_ebs_name
+  input_sec_ebs_name            = var.sec_ebs_name
+  input_third_ebs_name          = var.third_ebs_name
+  
 
   depends_on = [module.storage, module.instance]
 }

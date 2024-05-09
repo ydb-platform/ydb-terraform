@@ -1,23 +1,32 @@
-resource "aws_ebs_volume" "first_attached_disk" {
-  count             = var.instance_count  
+resource "aws_ebs_volume" "ebs_attached_disk_1" {
+  count             = var.instance_count
   availability_zone = element(var.input_availability_zones, count.index % length(var.input_availability_zones))
-  size              = var.input_first_ebs_size
-  type              = var.input_first_ebs_type
+  size              = var.input_ebs_attached_disk_size
+  type              = var.input_ebs_attached_disk_type
 
   tags = {
-    Name                 = format("%s-%d-%d", "${var.input_instance_name_prefix}", "${count.index +1}", 1)
+    Name            = format("%s-%d-%d", "${var.input_instance_name_prefix}", "${count.index +1}", 1)
   }
 }
 
-resource "aws_ebs_volume" "secondary_attached_disk" {
-  for_each = var.input_sec_attached_disk ? toset([for idx in range(var.instance_count) : tostring(idx)]) : toset([])
-
-  availability_zone = element(var.input_availability_zones, each.key % length(var.input_availability_zones))
-  size              = var.input_sec_ebs_size
-  type              = var.input_sec_ebs_type
+resource "aws_ebs_volume" "ebs_attached_disk_2" {
+  count             = var.instance_count
+  availability_zone = element(var.input_availability_zones, count.index % length(var.input_availability_zones))
+  size              = var.input_ebs_attached_disk_size
+  type              = var.input_ebs_attached_disk_type
 
   tags = {
-    Name                 = format("%s-%d-%d", "${var.input_instance_name_prefix}", "${each.key +1}", 2)
+    Name            = format("%s-%d-%d", "${var.input_instance_name_prefix}", "${count.index +1}", 2)
   }
+}
 
+resource "aws_ebs_volume" "ebs_attached_disk_3" {
+  count             = var.instance_count
+  availability_zone = element(var.input_availability_zones, count.index % length(var.input_availability_zones))
+  size              = var.input_ebs_attached_disk_size
+  type              = var.input_ebs_attached_disk_type
+
+  tags = {
+    Name            = format("%s-%d-%d", "${var.input_instance_name_prefix}", "${count.index +1}", 3)
+  }
 }
