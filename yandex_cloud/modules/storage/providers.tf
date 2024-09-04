@@ -12,5 +12,4 @@ provider "yandex" {
   cloud_id                 = var.auth_cloud_id
   folder_id                = var.auth_folder_id
   zone                     = var.zone_name[0]
-  profile                  = var.auth_profile
 }

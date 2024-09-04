@@ -33,11 +33,6 @@ variable "auth_cloud_id" {
     description = "Yandex WEB GUI Cloud"
 }
 
-variable "auth_profile" {
-    type = string
-    description = "Profile section from"
-}
-
 variable "auth_folder_id" {
     type = string
     description = ""

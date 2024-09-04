@@ -12,13 +12,6 @@ variable "cloud_id" {
     # default = "<yandex_cloud_id>"
 }
 
-variable "profile" {
-    description = "Profile section"
-    type = string
-    default = "Yandex"
-    
-}
-
 variable "folder_id" {
     description = "Yandex folder ID"
     type = string

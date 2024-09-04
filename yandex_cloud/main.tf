@@ -3,7 +3,6 @@ provider "yandex" {
   cloud_id                 = var.cloud_id
   folder_id                = var.folder_id
   zone                     = var.zone_name[0]
-  profile                  = var.profile
 }
 
 terraform {
@@ -28,7 +27,6 @@ module "storage" {
   # Auth data input
   auth_key_path = var.key_path
   auth_cloud_id = var.cloud_id
-  auth_profile = var.profile
   auth_folder_id = var.folder_id
 
   instance_name = var.instance_name
@@ -49,7 +47,6 @@ module "vpc" {
   # Auth data input
   auth_key_path = var.key_path
   auth_cloud_id = var.cloud_id
-  auth_profile = var.profile
   auth_folder_id = var.folder_id
   auth_zone_name = var.zone_name
 
@@ -85,7 +82,6 @@ module "instance" {
   # Auth data input
   auth_key_path = var.key_path
   auth_cloud_id = var.cloud_id
-  auth_profile = var.profile
   auth_folder_id = var.folder_id
   auth_zone_name = var.zone_name
   
@@ -107,7 +103,6 @@ module "dns" {
   #===== Auth data input =======#
   auth_key_path = var.key_path
   auth_cloud_id = var.cloud_id
-  auth_profile = var.profile
   auth_folder_id = var.folder_id
   auth_zone_name = var.zone_name
 }
