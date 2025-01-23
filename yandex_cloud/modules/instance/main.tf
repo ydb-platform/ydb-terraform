@@ -7,7 +7,6 @@ resource "yandex_compute_instance" "ydb-static-nodes" {
   zone  = element(var.auth_zone_name, count.index % length(var.auth_zone_name))
   allow_stopping_for_update = true
   hostname = "${var.instance_hostname}-${1 + count.index}.${var.module_domain}"
-  
 
   resources {
     cores  = var.instance_cores
@@ -39,7 +38,7 @@ resource "yandex_compute_instance" "ydb-static-nodes" {
   }
 
   metadata = {
-    ssh-keys = "var.module_user:${file(var.module_ssh_key_pub_path)}"
+    ssh-keys = "${var.module_user}:${file(var.module_ssh_key_pub_path)}"
   }
 
 }
