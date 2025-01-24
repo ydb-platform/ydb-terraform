@@ -39,7 +39,7 @@ resource "yandex_compute_instance" "ydb-static-nodes" {
   }
 
   metadata = {
-    ssh-keys = "var.module_user:${file(var.module_ssh_key_pub_path)}"
+    ssh-keys = "${var.module_user}:${file(var.module_ssh_key_pub_path)}"
   }
 
 }
