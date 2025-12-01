@@ -42,21 +42,3 @@ variable "instance_name" {
   type = string
   description = ""
 }
-
-
-#============= Auth vars =====================#
-
-variable "auth_key_path" {
-    type = string
-    description = "Set the JSON SA key file"
-}
-
-variable "auth_cloud_id" {
-    type = string
-    description = "Yandex WEB GUI Cloud"
-}
-
-variable "auth_folder_id" {
-    type = string
-    description = ""
-}
