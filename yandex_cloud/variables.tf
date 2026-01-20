@@ -67,7 +67,7 @@ variable "instance_hostname" {
 
 variable "instance_image_id" {
   type = string
-  default = "fd8clogg1kull9084s9o"
+  default = "fd8498pb5smsd5ch4gid"
   description = "Ubuntu 22.04 LTS image. Run `yc compute image list --folder-id standard-images` to get a list of available OS images."
 }
 
