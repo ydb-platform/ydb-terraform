@@ -2,9 +2,6 @@
 
 resource "yandex_vpc_network" "ydb-inner-net" {
   name = "ydb-inner-net"
-  folder_id = var.auth_folder_id
-
-
 }
 
 resource "yandex_vpc_subnet" "add-subnet" {
@@ -13,7 +10,6 @@ resource "yandex_vpc_subnet" "add-subnet" {
   name           = "subnet-a-ru-cent-${count.index + 1}"
   zone           = element(var.auth_zone_name, count.index % length(var.auth_zone_name))
   network_id     = yandex_vpc_network.ydb-inner-net.id
-  folder_id      = var.auth_folder_id
   route_table_id = yandex_vpc_route_table.all-route.id
 
   depends_on = [yandex_vpc_route_table.all-route]

@@ -1,23 +1,5 @@
 #=============== Auth vars control zone ===========#
 
-variable "key_path" {
-    description = "Path to the json file with service account credentials"
-    type = string
-    # default = "./prod.json"
-}
-
-variable "cloud_id" {
-    description = "Yandex cloud ID"
-    type = string
-    # default = "<yandex_cloud_id>"
-}
-
-variable "folder_id" {
-    description = "Yandex folder ID"
-    type = string
-    # default = "<yandex_folder_id>"
-}
-
 variable "zone_name" {
     description = "Names of availability zones to use"
     type = list(string)
@@ -42,7 +24,7 @@ variable "instance_platform" {
 
 variable "instance_cores" {
   type = number
-  default = 16
+  default = 8
   description = "Number of vCPU per instance"
 }
 
@@ -80,7 +62,7 @@ variable "user" {
 variable "ssh_key_pub_path" {
     type = string
     description = "Path to the public part of SSH-key"
-    # default = "~/<path_to_ssh_key>.pub"
+    default = "~/<path_to_ssh_key>.pub"
 }
 
 #=============== Disk control vars zone ==============#
@@ -109,7 +91,7 @@ variable "instance_data_disks_per_vm" {
 
 variable "instance_data_disk_size" {
     type = number
-    default = 186
+    default = 93
     description = "Size of each data disk in GB"
 }
 

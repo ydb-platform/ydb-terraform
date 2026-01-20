@@ -1,7 +1,4 @@
 provider "yandex" {
-  service_account_key_file = var.key_path
-  cloud_id                 = var.cloud_id
-  folder_id                = var.folder_id
   zone                     = var.zone_name[0]
 }
 
@@ -24,11 +21,6 @@ module "storage" {
   zone_name = var.zone_name
   instance_count = var.instance_count
 
-  # Auth data input
-  auth_key_path = var.key_path
-  auth_cloud_id = var.cloud_id
-  auth_folder_id = var.folder_id
-
   instance_name = var.instance_name
   instance_boot_disk_type = var.instance_boot_disk_type
   instance_boot_disk_size = var.instance_boot_disk_size
@@ -45,9 +37,6 @@ module "vpc" {
   source = "./modules/vpc/"
 
   # Auth data input
-  auth_key_path = var.key_path
-  auth_cloud_id = var.cloud_id
-  auth_folder_id = var.folder_id
   auth_zone_name = var.zone_name
 
 }
@@ -80,9 +69,6 @@ module "instance" {
   module_domain = var.domain
 
   # Auth data input
-  auth_key_path = var.key_path
-  auth_cloud_id = var.cloud_id
-  auth_folder_id = var.folder_id
   auth_zone_name = var.zone_name
   
   depends_on = [
@@ -97,13 +83,9 @@ module "dns" {
   input_net_id = module.vpc.net_id
 
   #==== Global data input ======#
-  module_folder_id = var.folder_id
   module_domain = var.domain
 
   #===== Auth data input =======#
-  auth_key_path = var.key_path
-  auth_cloud_id = var.cloud_id
-  auth_folder_id = var.folder_id
   auth_zone_name = var.zone_name
 }
 

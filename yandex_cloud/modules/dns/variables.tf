@@ -11,32 +11,12 @@ variable "input_net_id" {
     description = ""
 }
 
-variable "module_folder_id" {
-    type = string
-    description = ""
-}
-
 variable "module_domain" {
     type = string
     description = ""
 }
 
 #============= Auth vars =====================#
-
-variable "auth_key_path" {
-    type = string
-    description = "Set the JSON SA key file"
-}
-
-variable "auth_cloud_id" {
-    type = string
-    description = "Yandex WEB GUI Cloud"
-}
-
-variable "auth_folder_id" {
-    type = string
-    description = ""
-}
 
 variable "auth_zone_name" {
     type = list
